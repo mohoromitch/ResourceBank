@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ear" name="ResourceBank:ear">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="ResourceBank-1.0-SNAPSHOT.ear">
+      <element id="artifact" artifact-name="ResourceBank:ear exploded" />
+    </root>
+  </artifact>
+</component>

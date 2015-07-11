@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    <h:outputStylesheet library="css" name="sticky-footer.css"/>
+    <h:outputScript library="js" name="jquery-1.11.3.min.js" />
+    <h:outputScript library="js" name="bootstrap.min.js"/>
+</h:head>
+<h:body>
+        <ui:insert name="navbar">
+            <ui:include src="navbar.xhtml"/>
+        </ui:insert>
+
+    <div class="container" style="padding-bottom: 70px">
+        <ui:insert name="content">
+            <ui:include src="content.xhtml"/>
+        </ui:insert>
+    </div>
+        <ui:insert name="footer">
+            <ui:include src="footer.xhtml"/>
+        </ui:insert>
+</h:body>
+</html>
