@@ -11,6 +11,7 @@
       <element id="directory" name="web.war">
         <element id="artifact" artifact-name="WebModule:war exploded" />
       </element>
+      <element id="directory" name="lib" />
     </root>
   </artifact>
 </component>

@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="ResourceBank-1.0-SNAPSHOT.ear">
       <element id="artifact" artifact-name="ResourceBank:ear exploded" />
+      <element id="directory" name="lib" />
     </root>
   </artifact>
 </component>

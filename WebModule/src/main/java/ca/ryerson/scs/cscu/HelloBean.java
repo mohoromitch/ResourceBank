@@ -1,6 +1,7 @@
 package ca.ryerson.scs.cscu;
 
 import ca.ryerson.scs.cscu.ejb.MessageBean;
+import ca.ryerson.scs.cscu.ejb.database.ProgramBean;
 
 import javax.annotation.Resource;
 import javax.ejb.EJB;
@@ -23,6 +24,10 @@ public class HelloBean implements Serializable {
 
     @EJB
     MessageBean mb;
+
+    @EJB
+    ProgramBean pb;
+
     String message = "message was no overridden";
     String dataSource;
 
@@ -45,6 +50,13 @@ public class HelloBean implements Serializable {
             }
         }
         return dataSource;
+    }
+
+    public String testConnection() {
+        if(pb == null)
+            return "ProgramBean is null.";
+        else
+            return String.valueOf(pb.entityManagerExists());
     }
 
     public void setDataSource(String dataSource) {

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="jdbcPU" transaction-type="JTA">
+        <jta-data-source>jdbc/rbResource</jta-data-source>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="eclipselink.target-database" value="MySQL"/>
+            <property name="eclipselink.deploy-on-startup" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
