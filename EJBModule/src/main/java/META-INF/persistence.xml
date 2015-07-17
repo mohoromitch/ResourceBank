@@ -6,6 +6,7 @@
         <properties>
             <property name="eclipselink.target-database" value="MySQL"/>
             <property name="eclipselink.deploy-on-startup" value="true"/>
+            <property name="eclipselink.ddl-generation" value="create-tables" />
         </properties>
     </persistence-unit>
 </persistence>

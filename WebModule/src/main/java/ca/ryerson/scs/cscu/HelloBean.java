@@ -28,7 +28,7 @@ public class HelloBean implements Serializable {
     @EJB
     ProgramBean pb;
 
-    String message = "message was no overridden";
+    String message = "message was not overridden";
     String dataSource;
 
     public String getMessage() {
@@ -41,15 +41,8 @@ public class HelloBean implements Serializable {
         this.message = message;
     }
 
-    public String getDataSource() {
-        if(this.dataSource == null) {
-            if(this.ds == null) {
-                this.setDataSource("Nope. :(");
-            } else {
-                this.setDataSource("Yes!");
-            }
-        }
-        return dataSource;
+    public String dataSourceExists() {
+        return String.valueOf((ds != null));
     }
 
     public String testConnection() {
@@ -59,7 +52,7 @@ public class HelloBean implements Serializable {
             return String.valueOf(pb.entityManagerExists());
     }
 
-    public void setDataSource(String dataSource) {
-        this.dataSource = dataSource;
+    public void addProgram(String faculty, String shortname) {
+        pb.addProgram(faculty, shortname);
     }
 }

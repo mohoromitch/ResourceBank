@@ -3,6 +3,7 @@ package ca.ryerson.scs.cscu.ejb.database;
 import ca.ryerson.scs.cscu.entities.Program;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJBException;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,38 +21,30 @@ public class ProgramBeanImpl implements ProgramBean {
 
     @Override
     public void removeProgram(int id) {
-        /*
         Program program = this.em.find(Program.class, id);
         em.remove(program);
-        */
     }
 
     @Override
     public List<Program> getPrograms() {
-        /*
         List<Program> programs;
         Query query = em.createNamedQuery("getAllPrograms");
         programs = query.getResultList();
         return programs;
-        */
-        return null;
     }
 
     @Override
     public void addProgram(Program program) {
-        /*
-        this.em.persist(program);
-        */
+        try {
+            this.em.persist(program);
+        } catch (EJBException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void addProgram(String name, String shortname) {
-        //this.addProgram(new Program(name, shortname));
-    }
-
-    @PostConstruct
-    public void initializeDefaultData() {
-        //this.addProgram(new Program("this is a name", "this is a shortname!"));
+        this.addProgram(new Program(name, shortname));
     }
 
     @Override

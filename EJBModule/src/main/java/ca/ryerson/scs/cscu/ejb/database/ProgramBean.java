@@ -15,6 +15,5 @@ public interface ProgramBean {
     List<Program> getPrograms();
     void addProgram(Program program);
     void addProgram(String name, String shortname);
-    void initializeDefaultData();
     boolean entityManagerExists();
 }

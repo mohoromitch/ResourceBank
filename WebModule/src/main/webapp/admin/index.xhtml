@@ -7,7 +7,30 @@
 <h:body>
     <ui:composition template="/WEB-INF/templates/template.xhtml">
         <ui:define name="content">
+            <h1>Administrator Index Page</h1>
             <p>This page should only viewable to admins.</p>
+            <p>This page will contain all the elements that an administrator will need to maintain and modify the site.</p>
+            <p>Admins will be able to:</p>
+            <ul>
+                <li><a href="/admin/program/index.xhtml">add/remove programs</a></li>
+                <li>add/remove courses</li>
+                <li>add/remove courses from programs</li>
+                <li>ban/revoke users</li>
+            </ul>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">Programs</div>
+                        <div class="panel-body">Add, remove and modify programs on the site.</div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">Courses</div>
+                        <div class="panel-body">Add, remove and modify courses on the site.</div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 </h:body>
