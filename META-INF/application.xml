@@ -9,10 +9,12 @@
             <context-root>/</context-root>
         </web>
     </module>
+    <!--
     <module id="EJBModule">
         <ejb>ejb.jar</ejb>
     </module>
     <module id="EJBModule-EJB">
         <ejb>EJBModule.jar</ejb>
     </module>
+    -->
 </application>
