@@ -1,4 +1,4 @@
-package ca.ryerson.scs.cscu.web.ejb.database;
+package ca.ryerson.scs.cscu.web.ejb.database.Programs;
 
 import ca.ryerson.scs.cscu.web.entities.Program;
 

@@ -1,7 +1,7 @@
 package ca.ryerson.scs.cscu.web;
 
 import ca.ryerson.scs.cscu.web.ejb.MessageBean;
-import ca.ryerson.scs.cscu.web.ejb.database.ProgramBean;
+import ca.ryerson.scs.cscu.web.ejb.database.Programs.ProgramBean;
 
 import javax.annotation.Resource;
 import javax.ejb.EJB;

@@ -5,6 +5,7 @@
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/ResourceBank-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
         <element id="dir-copy" path="$PROJECT_DIR$/META-INF" />
+        <element id="file-copy" path="$PROJECT_DIR$/EJBModule/src/main/java/META-INF/persistence.xml" />
       </element>
       <element id="dir-copy" path="$PROJECT_DIR$/src/main/application" />
       <element id="directory" name="web.war">
