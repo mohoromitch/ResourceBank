@@ -9,16 +9,13 @@
         <ui:define name="content">
             <div class="jumbotron">
                 <div class="container">
-                    <div class="page-header">
-                        <h1>Welcome</h1>
-
-                        <p>To the CSCU Resource Bank!</p>
-                        <p><h:link outcome="/admin/index.xhtml">Admin index.xhtml</h:link> </p>
-
-                        <h2>Status:</h2>
-                        <p>Data Resource Injected => #{helloBean.dataSourceExists()}</p>
-                        <p>Pb connection exists => #{helloBean.testConnection()}</p>
-                    </div>
+                    <h1>Status</h1>
+                    <p>DataSource injected: #{statusBean.dataSourceInjected()}</p>
+                    <h2>FacultyBean</h2>
+                    <p>FacultyBean exists: #{statusBean.facultyBeanExists()}</p>
+                    <h2>ProgramBean</h2>
+                    <p>ProgramBean exists: #{statusBean.programBeanExists()}</p>
+                    <p>ProgramBean.EntityManager exists: #{statusBean.programBeanEntityManagerExists()}</p>
                 </div>
             </div>
         </ui:define>
