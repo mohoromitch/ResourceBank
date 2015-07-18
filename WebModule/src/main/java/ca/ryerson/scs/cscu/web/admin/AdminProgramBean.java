@@ -1,6 +1,6 @@
-package ca.ryerson.scs.cscu.admin;
+package ca.ryerson.scs.cscu.web.admin;
 
-import ca.ryerson.scs.cscu.ejb.database.ProgramBean;
+import ca.ryerson.scs.cscu.web.ejb.database.ProgramBean;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;

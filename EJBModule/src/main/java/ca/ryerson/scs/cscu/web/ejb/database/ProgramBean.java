@@ -1,6 +1,6 @@
-package ca.ryerson.scs.cscu.ejb.database;
+package ca.ryerson.scs.cscu.web.ejb.database;
 
-import ca.ryerson.scs.cscu.entities.Program;
+import ca.ryerson.scs.cscu.web.entities.Program;
 
 import javax.ejb.Remote;
 import java.util.List;

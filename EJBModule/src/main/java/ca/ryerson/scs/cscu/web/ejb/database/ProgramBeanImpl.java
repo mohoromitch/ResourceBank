@@ -1,8 +1,7 @@
-package ca.ryerson.scs.cscu.ejb.database;
+package ca.ryerson.scs.cscu.web.ejb.database;
 
-import ca.ryerson.scs.cscu.entities.Program;
+import ca.ryerson.scs.cscu.web.entities.Program;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJBException;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;

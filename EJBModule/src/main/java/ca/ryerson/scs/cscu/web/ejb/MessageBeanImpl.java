@@ -1,7 +1,6 @@
-package ca.ryerson.scs.cscu.ejb;
+package ca.ryerson.scs.cscu.web.ejb;
 
 import javax.ejb.Stateless;
-import javax.inject.Named;
 
 /**
  * Created by mitchellmohorovich on 15-07-11.

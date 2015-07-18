@@ -1,4 +1,4 @@
-package ca.ryerson.scs.cscu.ejb;
+package ca.ryerson.scs.cscu.web.ejb;
 
 import javax.ejb.Remote;
 

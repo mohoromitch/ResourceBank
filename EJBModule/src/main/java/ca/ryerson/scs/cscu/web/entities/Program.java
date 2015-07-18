@@ -1,4 +1,4 @@
-package ca.ryerson.scs.cscu.entities;
+package ca.ryerson.scs.cscu.web.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
