@@ -1,7 +1,7 @@
-package ca.ryerson.scs.cscu.web.status;
+package ca.ryerson.scs.cscu.status;
 
-import ca.ryerson.scs.cscu.web.ejb.database.Faculty.FacultyBean;
-import ca.ryerson.scs.cscu.web.ejb.database.Programs.ProgramBean;
+import ca.ryerson.scs.cscu.ejb.database.Faculty.FacultyBean;
+import ca.ryerson.scs.cscu.ejb.database.Programs.ProgramBean;
 
 import javax.annotation.Resource;
 import javax.ejb.EJB;
