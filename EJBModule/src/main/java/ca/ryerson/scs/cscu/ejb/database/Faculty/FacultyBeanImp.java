@@ -45,7 +45,6 @@ public class FacultyBeanImp implements FacultyBean {
 
     @Override
     public List<Faculty> getAllFaculties() {
-        List<Faculty> faculties;
         Query query = em.createNamedQuery("getAllFaculties");
         return query.getResultList();
     }

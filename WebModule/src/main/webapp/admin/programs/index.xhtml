@@ -7,9 +7,9 @@
 <h:body>
     <ui:composition template="/WEB-INF/templates/template.xhtml">
         <ui:define name="content">
-            <h1>Program Index Page</h1>
-
-            <p>This page will let administrators interact with programs.</p>
+            <div class="page-header">
+                <h1>Programs <small>Administration</small></h1>
+            </div>
 
             <h2>Program Master List:</h2>
             <h:dataTable styleClass="table" value="#{adminProgramBean.allPrograms}" var="p">
@@ -29,18 +29,22 @@
                     <f:facet name="header">Faculty</f:facet>
                     #{p.faculty.name}
                 </h:column>
+                <h:column>
+                    <f:facet name="header">Action</f:facet>
+                    <h:outputLink value="/programs/#{p.shortname}">View</h:outputLink>
+                </h:column>
             </h:dataTable>
 
             <h2>Actions:</h2>
-            <h2>Add a new program:</h2>
+            <h3>Add a new program:</h3>
             <h:form>
                 <div class="form-group">
-                    <h:outputLabel value="Program Name:" for="program_name"/>
-                        <h:inputText id="program_name" styleClass="form-control" value="#{adminProgramBean.name}"/>
+                    <h:outputLabel value="Program Name:" for="program-name"/>
+                        <h:inputText id="program-name" styleClass="form-control" value="#{adminProgramBean.name}"/>
                 </div>
                 <div class="form-group">
-                    <h:outputLabel value="Shortname:" for="program_shortname"/>
-                        <h:inputText id="program_shortname" styleClass="form-control" value="#{adminProgramBean.shortName}"/>
+                    <h:outputLabel value="Shortname:" for="program-shortname"/>
+                        <h:inputText id="program-shortname" styleClass="form-control" value="#{adminProgramBean.shortName}"/>
                 </div>
                 <div class="form-group">
                     <h:selectOneMenu styleClass="form-control" value="#{adminProgramBean.facultyId}">

@@ -16,8 +16,9 @@ public interface ProgramBean {
     void removeProgram(int id);
     List<Program> getAllPrograms();
     List<Program> getProgramsByFaculty(Faculty f);
+    Program getProgramByShortName(String shortName);
     void addProgram(Program program);
-    void addProgram(String name, String shortname);
-    void addProgram(String name, String shortname, Faculty faculty);
+    void addProgram(String name, String shortName);
+    void addProgram(String name, String shortName, Faculty faculty);
     boolean entityManagerExists();
 }

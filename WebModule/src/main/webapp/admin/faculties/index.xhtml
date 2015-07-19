@@ -7,9 +7,10 @@
 <h:body>
     <ui:composition template="/WEB-INF/templates/template.xhtml">
         <ui:define name="content">
-            <h1>Faculty Index Page</h1>
-            <p>This page will let administrators interact with faculties.</p>
-            <h2>Current Faculties:</h2>
+            <div class="page-header">
+                <h1>Faculties <small>Administration</small></h1>
+            </div>
+            <h2>Faculty List:</h2>
             <h:dataTable styleClass="table" value="#{adminFacultyBean.facultyList}" var="f">
                 <h:column>
                     <f:facet name="header">Id</f:facet>
@@ -25,9 +26,8 @@
             <h2>Add a faculty:</h2>
             <h:form>
                 <div class="form-group">
-                    <h:outputLabel value="Faculty Name:">
-                        <h:inputText styleClass="form-control" value="#{adminFacultyBean.name}"/>
-                    </h:outputLabel>
+                    <h:outputLabel value="Faculty Name:" for="faculty-name-input"/>
+                        <h:inputText id="faculty-name-input" styleClass="form-control" value="#{adminFacultyBean.name}"/>
                 </div>
                 <div class="form-group">
                     <h:commandButton styleClass="btn" value="Submit" action="#{adminFacultyBean.addFaculty()}"/>

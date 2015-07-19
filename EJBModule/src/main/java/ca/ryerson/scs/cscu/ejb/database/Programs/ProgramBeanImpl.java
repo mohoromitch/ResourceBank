@@ -1,5 +1,6 @@
 package ca.ryerson.scs.cscu.ejb.database.Programs;
 
+import ca.ryerson.scs.cscu.ejb.database.Courses.CourseBean;
 import ca.ryerson.scs.cscu.ejb.database.Faculty.FacultyBean;
 import ca.ryerson.scs.cscu.entities.Faculty;
 import ca.ryerson.scs.cscu.entities.Program;
@@ -27,10 +28,18 @@ public class ProgramBeanImpl implements ProgramBean {
     @EJB
     FacultyBean facultyBean;
 
+    @EJB
+    CourseBean courseBean;
+
     @Override
     @PostConstruct
     public void initializeDefaults() {
-        this.addProgram(new Program("Computer Science", "CS", facultyBean.findFacultyByName("Science")));
+        Program cs = new Program("Computer Science", "CS", facultyBean.findFacultyByName("Science"));
+        cs.addCourse(courseBean.getCourseByCourseCode("CPS109"));
+        cs.addCourse(courseBean.getCourseByCourseCode("CPS209"));
+        cs.addCourse(courseBean.getCourseByCourseCode("CPS590"));
+        this.addProgram(cs);
+        //this.addProgram(new Program("Computer Science", "CS", facultyBean.findFacultyByName("Science")));
         this.addProgram(new Program("Electrical Engineering", "EE", facultyBean.findFacultyByName("Engineering")));
         this.addProgram(new Program("Biology", "Bio", facultyBean.findFacultyByName("Science")));
     }
@@ -55,6 +64,13 @@ public class ProgramBeanImpl implements ProgramBean {
     }
 
     @Override
+    public Program getProgramByShortName(String shortName) {
+        Query query = em.createNamedQuery("getProgramByShortName");
+        query.setParameter("shortName", shortName);
+        return (Program) query.getSingleResult();
+    }
+
+    @Override
     public void addProgram(Program program) {
         try {
             this.em.persist(program);
@@ -64,12 +80,12 @@ public class ProgramBeanImpl implements ProgramBean {
     }
 
     @Override
-    public void addProgram(String name, String shortname) {
-        this.addProgram(new Program(name, shortname, null));
+    public void addProgram(String name, String shortName) {
+        this.addProgram(new Program(name, shortName, null));
     }
 
-    public void addProgram(String name, String shortname, Faculty faculty) {
-        this.addProgram(new Program(name, shortname, faculty));
+    public void addProgram(String name, String shortName, Faculty faculty) {
+        this.addProgram(new Program(name, shortName, faculty));
     }
 
     @Override
