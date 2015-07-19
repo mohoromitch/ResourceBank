@@ -1,4 +1,4 @@
-package ca.ryerson.scs.cscu.web.entities;
+package ca.ryerson.scs.cscu.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,13 +19,21 @@ public class Program implements Serializable {
     @GeneratedValue
     private int id;
     private String name;
-    private String shortname;
+    private String shortName;
+    @ManyToOne
+    private Faculty faculty;
 
     public Program() {}
 
-    public Program(String name, String shortname) {
+    public Program(String name, String shortName) {
         this.name = name;
-        this.shortname = shortname;
+        this.shortName = shortName;
+    }
+
+    public Program(String name, String shortName, Faculty faculty) {
+        this.name = name;
+        this.shortName = shortName;
+        this.faculty = faculty;
     }
 
     public int getId() {
@@ -36,7 +44,11 @@ public class Program implements Serializable {
         return name;
     }
 
-    public String getShortform() {
-        return shortname;
+    public String getShortname() {
+        return shortName;
+    }
+
+    public Faculty getFaculty() {
+        return faculty;
     }
 }

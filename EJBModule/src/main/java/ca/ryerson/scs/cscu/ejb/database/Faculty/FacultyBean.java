@@ -1,6 +1,6 @@
-package ca.ryerson.scs.cscu.web.ejb.database.Faculty;
+package ca.ryerson.scs.cscu.ejb.database.Faculty;
 
-import ca.ryerson.scs.cscu.web.entities.Faculty;
+import ca.ryerson.scs.cscu.entities.Faculty;
 
 import javax.ejb.Remote;
 import java.util.List;
@@ -16,4 +16,5 @@ public interface FacultyBean {
     void addFaculty(String name);
     void removeFaculty(int id);
     List getAllFaculties();
+    Faculty findFacultyById(int id);
 }

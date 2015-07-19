@@ -1,4 +1,4 @@
-package ca.ryerson.scs.cscu.web.ejb;
+package ca.ryerson.scs.cscu.ejb;
 
 import javax.ejb.Stateless;
 

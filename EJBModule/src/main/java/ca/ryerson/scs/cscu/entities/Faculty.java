@@ -1,4 +1,4 @@
-package ca.ryerson.scs.cscu.web.entities;
+package ca.ryerson.scs.cscu.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,12 +8,12 @@ import java.io.Serializable;
  */
 
 @Entity
-@NamedQueries(
+@NamedQueries({
         @NamedQuery(
                 name = "getAllFaculties",
                 query = "select f from Faculty f"
         )
-)
+})
 public class Faculty implements Serializable {
     @Id
     @GeneratedValue
@@ -21,7 +21,6 @@ public class Faculty implements Serializable {
     private String name;
 
     public Faculty() {
-        this.name = "";
     }
 
     public Faculty(String name) {

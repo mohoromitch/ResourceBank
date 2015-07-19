@@ -1,8 +1,10 @@
-package ca.ryerson.scs.cscu.web.ejb.database.Faculty;
+package ca.ryerson.scs.cscu.ejb.database.Faculty;
 
-import ca.ryerson.scs.cscu.web.entities.Faculty;
+import ca.ryerson.scs.cscu.entities.Faculty;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -12,12 +14,14 @@ import java.util.List;
  * Created by mitchellmohorovich on 15-07-17.
  */
 
+@Startup
 @Singleton
 public class FacultyBeanImp implements FacultyBean {
     @PersistenceContext(unitName = "jdbcPU")
     EntityManager em;
 
     @Override
+    @PostConstruct
     public void initializeDefaults() {
         this.addFaculty("Science");
         this.addFaculty("Engineering");
@@ -30,7 +34,7 @@ public class FacultyBeanImp implements FacultyBean {
 
     @Override
     public void addFaculty(String name) {
-        this.addFaculty(new Faculty());
+        this.addFaculty(new Faculty(name));
     }
 
     @Override
@@ -44,5 +48,10 @@ public class FacultyBeanImp implements FacultyBean {
         List<Faculty> faculties;
         Query query = em.createNamedQuery("getAllFaculties");
         return query.getResultList();
+    }
+
+    @Override
+    public Faculty findFacultyById(int id) {
+        return em.find(Faculty.class, id);
     }
 }
