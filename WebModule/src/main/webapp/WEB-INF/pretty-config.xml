@@ -3,9 +3,18 @@
                xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
                       http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
 
-    <url-mapping id="login">
-        <pattern value="/programs/#{program}" />
+    <url-mapping id="publicProgram">
+        <pattern value="/programs/#{uriProgramShortName}" />
         <view-id value="/programs/program.xhtml" />
+    </url-mapping>
+    <url-mapping id="adminProgram">
+        <pattern value="/admin/programs/#{uriProgramShortName}" />
+        <view-id value="/admin/programs/program.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="publicCourse">
+        <pattern value="/courses/#{uriCourseCode}" />
+        <view-id value="/courses/course.xhtml"/>
     </url-mapping>
 
 </pretty-config>

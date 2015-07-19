@@ -2,6 +2,7 @@ package ca.ryerson.scs.cscu.admin;
 
 import ca.ryerson.scs.cscu.ejb.database.Faculty.FacultyBean;
 import ca.ryerson.scs.cscu.ejb.database.Programs.ProgramBean;
+import ca.ryerson.scs.cscu.entities.Course;
 import ca.ryerson.scs.cscu.entities.Faculty;
 import ca.ryerson.scs.cscu.entities.Program;
 
@@ -68,5 +69,9 @@ public class AdminProgramBean implements Serializable {
         if(this.allPrograms == null)
             this.allPrograms = programBean.getAllPrograms();
         return programBean.getAllPrograms();
+    }
+
+    public Program getProgramByShortName(String shortName) {
+        return programBean.getProgramByShortName(shortName);
     }
 }

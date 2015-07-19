@@ -8,7 +8,19 @@
 <h:body>
     <ui:composition template="/WEB-INF/templates/template.xhtml">
         <ui:define name="content">
-            You entered in: #{program}!
+            <div class="page-header">
+                <h1>#{adminProgramBean.getProgramByShortName(uriProgramShortName).name} <small>Related Courses</small></h1>
+            </div>
+            <h:dataTable styleClass="table" value="#{adminProgramBean.getProgramByShortName(uriProgramShortName).courses}" var="c">
+                <h:column>
+                    <f:facet name="header">Course Code</f:facet>
+                    <h:outputLink value="/courses/#{c.courseCode}">#{c.courseCode}</h:outputLink>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Course Name</f:facet>
+                    #{c.name}
+                </h:column>
+            </h:dataTable>
         </ui:define>
     </ui:composition>
 </h:body>
