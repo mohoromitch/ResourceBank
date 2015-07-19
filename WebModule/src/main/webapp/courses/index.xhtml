@@ -7,10 +7,19 @@
 <h:body>
     <ui:composition template="/WEB-INF/templates/template.xhtml">
         <ui:define name="content">
-            <h1>Courses <small>for Computer Science</small></h1>
-            <p>This is the courses index page, the list of all courses relevant to a particlar program be listed here.</p>
-            <p>In Phase 1, we will only support CS, so this will be the main redirect from /programs/index.xhtml test!</p>
-            <p>This is another test.</p>
+            <h1>Courses <small>Master List</small></h1>
+            <p>All courses available on the site are listed here, not organized by program relevance.</p>
+            <h:dataTable styleClass="table" value="#{adminCourseBean.masterList}" var="c">
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    #{c.courseCode}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Faculty</f:facet>
+                    #{c.name}
+                </h:column>
+            </h:dataTable>
+
         </ui:define>
     </ui:composition>
 </h:body>
