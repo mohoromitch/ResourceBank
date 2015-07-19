@@ -7,9 +7,21 @@
 <h:body>
     <ui:composition template="/WEB-INF/templates/template.xhtml">
         <ui:define name="content">
+            <h1>Programs</h1>
             This is the programs index page, the list of all exams for all programs will be listed here.
 
             In Phase 1, we will only support CS, so this will redirect to /programs/cs
+            <h2>All Programs</h2>
+            <h:dataTable styleClass="table" value="#{adminProgramBean.allPrograms}" var="p">
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    <h:outputLink value="/programs/#{p.shortname}">#{p.name}</h:outputLink>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Faculty</f:facet>
+                    #{p.faculty.name}
+                </h:column>
+            </h:dataTable>
         </ui:define>
     </ui:composition>
 </h:body>
