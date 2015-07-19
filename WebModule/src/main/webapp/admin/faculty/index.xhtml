@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:body>
+    <ui:composition template="/WEB-INF/templates/template.xhtml">
+        <ui:define name="content">
+            <h1>Faculty Index Page</h1>
+            <p>This page will let administrators interact with faculties.</p>
+            <h2>Current Faculties:</h2>
+            <h:dataTable styleClass="table" value="#{adminFacultyBean.facultyList}" var="f">
+                <h:column>
+                    <f:facet name="header">Id</f:facet>
+                    #{f.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    #{f.name}
+                </h:column>
+
+            </h:dataTable>
+
+            <h2>Add a faculty:</h2>
+            <h:form>
+                <div class="form-group">
+                    <h:outputLabel value="Faculty Name:">
+                        <h:inputText styleClass="form-control" value="#{adminFacultyBean.name}"/>
+                    </h:outputLabel>
+                </div>
+                <div class="form-group">
+                    <h:commandButton styleClass="btn" value="Submit" action="#{adminFacultyBean.addFaculty()}"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

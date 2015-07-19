@@ -8,29 +8,44 @@
     <ui:composition template="/WEB-INF/templates/template.xhtml">
         <ui:define name="content">
             <h1>Administrator Index Page</h1>
+
             <p>This page should only viewable to admins.</p>
-            <p>This page will contain all the elements that an administrator will need to maintain and modify the site.</p>
-            <p>Admins will be able to:</p>
-            <ul>
-                <li><a href="/admin/program/index.xhtml">add/remove programs</a></li>
-                <li>add/remove courses</li>
-                <li>add/remove courses from programs</li>
-                <li>ban/revoke users</li>
-            </ul>
+
+            <p>This page contains all the elements that an administrator will need to maintain and modify the site.</p>
+
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="panel panel-success">
-                        <div class="panel-heading">Programs</div>
-                        <div class="panel-body">Add, remove and modify programs on the site.</div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Courses</div>
+                        <a href="/admin/course/index.xhtml">
+                            <div class="panel-body">Add, remove and modify the courses on the site.</div>
+                        </a>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="panel panel-success">
-                        <div class="panel-heading">Courses</div>
-                        <div class="panel-body">Add, remove and modify courses on the site.</div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Users</div>
+                        <div class="panel-body">Interact, monitor and adminster the users of the site.</div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Programs</div>
+                        <a href="/admin/program/index.xhtml" class="btn-block">
+                            <div class="panel-body">Add, remove and modify the programs on the site.</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Faculties</div>
+                        <a href="/admin/faculty/index.xhtml" class="btn-block">
+                            <div class="panel-body">Add, remove and modify faculties on the site.</div>
+                        </a>
                     </div>
                 </div>
             </div>
+
         </ui:define>
     </ui:composition>
 </h:body>
