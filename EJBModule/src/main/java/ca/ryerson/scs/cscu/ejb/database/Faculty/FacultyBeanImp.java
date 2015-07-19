@@ -54,4 +54,16 @@ public class FacultyBeanImp implements FacultyBean {
     public Faculty findFacultyById(int id) {
         return em.find(Faculty.class, id);
     }
+
+    @Override
+    public Faculty findFacultyByName(String name) {
+        Query query = em.createNamedQuery("getFacultyByName");
+        query.setParameter("name", name);
+        Faculty returnFaculty = (Faculty) query.getSingleResult();
+        if(returnFaculty == null) {
+            return new Faculty("unknown");
+        } else {
+            return returnFaculty;
+        }
+    }
 }

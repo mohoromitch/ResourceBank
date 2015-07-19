@@ -12,6 +12,10 @@ import java.io.Serializable;
         @NamedQuery(
                 name = "getAllFaculties",
                 query = "select f from Faculty f"
+        ),
+        @NamedQuery(
+                name = "getFacultyByName",
+                query = "select f from Faculty f where f.name = :name"
         )
 })
 public class Faculty implements Serializable {

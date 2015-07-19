@@ -15,6 +15,7 @@ public interface FacultyBean {
     void addFaculty(Faculty faculty);
     void addFaculty(String name);
     void removeFaculty(int id);
-    List getAllFaculties();
+    List<Faculty> getAllFaculties();
     Faculty findFacultyById(int id);
+    Faculty findFacultyByName(String name);
 }

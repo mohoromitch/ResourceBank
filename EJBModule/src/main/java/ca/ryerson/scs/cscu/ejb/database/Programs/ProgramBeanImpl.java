@@ -30,9 +30,9 @@ public class ProgramBeanImpl implements ProgramBean {
     @Override
     @PostConstruct
     public void initializeDefaults() {
-        this.addProgram(new Program("Computer Science", "CS", facultyBean));
-        this.addProgram(new Program("Electrical Engineering", "EE"));
-        this.addProgram(new Program("Biology", "Bio"));
+        this.addProgram(new Program("Computer Science", "CS", facultyBean.findFacultyByName("Science")));
+        this.addProgram(new Program("Electrical Engineering", "EE", facultyBean.findFacultyByName("Engineering")));
+        this.addProgram(new Program("Biology", "Bio", facultyBean.findFacultyByName("Science")));
     }
 
     @Override
