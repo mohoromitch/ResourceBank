@@ -10,6 +10,8 @@
             <div class="jumbotron">
                 <div class="container">
                     <h1>Status</h1>
+                    <p>Logged in: #{securityBean.isLoggedIn()}</p>
+                    <p>Is an admin? #{securityBean.isUserAdmin()}</p>
                     <p>DataSource injected: #{statusBean.dataSourceInjected()}</p>
                     <h2>FacultyBean</h2>
                     <p>FacultyBean exists: #{statusBean.facultyBeanExists()}</p>
