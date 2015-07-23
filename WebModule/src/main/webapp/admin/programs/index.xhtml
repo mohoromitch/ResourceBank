@@ -12,7 +12,7 @@
             </div>
 
             <h2>Program Master List:</h2>
-            <h:dataTable styleClass="table" value="#{adminProgramBean.allPrograms}" var="p">
+            <h:dataTable styleClass="table" value="#{adminProgramBean.getAllEntities()}" var="p">
                 <h:column>
                     <f:facet name="header">Id</f:facet>
                     #{p.id}
@@ -48,11 +48,11 @@
                 </div>
                 <div class="form-group">
                     <h:selectOneMenu styleClass="form-control" value="#{adminProgramBean.facultyId}">
-                        <f:selectItems value="#{adminFacultyBean.facultyList}" var="faculty" itemValue="#{faculty.id}" itemLabel="#{faculty.name}"/>
+                        <f:selectItems value="#{adminFacultyBean.getAllEntities()}" var="faculty" itemValue="#{faculty.id}" itemLabel="#{faculty.name}"/>
                     </h:selectOneMenu>
                 </div>
                 <div class="form-group">
-                    <h:commandButton styleClass="btn" value="Submit" action="#{adminProgramBean.addProgram()}"/>
+                    <h:commandButton styleClass="btn" value="Submit" action="#{adminProgramBean.persistEntity()}"/>
                 </div>
             </h:form>
         </ui:define>

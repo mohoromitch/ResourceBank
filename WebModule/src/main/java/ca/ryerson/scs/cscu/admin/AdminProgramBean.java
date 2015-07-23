@@ -5,6 +5,8 @@ import ca.ryerson.scs.cscu.ejb.database.Programs.ProgramBean;
 import ca.ryerson.scs.cscu.entities.Course;
 import ca.ryerson.scs.cscu.entities.Faculty;
 import ca.ryerson.scs.cscu.entities.Program;
+import ca.ryerson.scs.cscu.interfaces.AdminBean;
+import ca.ryerson.scs.cscu.interfaces.DisplayBean;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -22,7 +24,7 @@ import java.util.List;
 
 @Named("adminProgramBean")
 @RequestScoped
-public class AdminProgramBean implements Serializable {
+public class AdminProgramBean implements AdminBean<Program>, DisplayBean<Program> {
     @EJB
     ProgramBean programBean;
 
@@ -58,13 +60,6 @@ public class AdminProgramBean implements Serializable {
         return facultyId;
     }
 
-    public void addProgram() throws IOException {
-        Faculty faculty = facultyBean.findFacultyById(this.getFacultyId());
-        programBean.addProgram(this.getName(), this.getshortName(), faculty);
-        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
-    }
-
     public List<Program> getAllPrograms() {
         if(this.allPrograms == null)
             this.allPrograms = programBean.getAllPrograms();
@@ -73,5 +68,28 @@ public class AdminProgramBean implements Serializable {
 
     public Program getProgramByShortName(String shortName) {
         return programBean.getProgramByShortName(shortName);
+    }
+
+    @Override
+    public void persistEntity() throws IOException {
+        Faculty faculty = facultyBean.findFacultyById(this.getFacultyId());
+        programBean.addProgram(this.getName(), this.getshortName(), faculty);
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
+    }
+
+    @Override
+    public void removeEntityById(int id) {
+        //todo: implement this
+    }
+
+    @Override
+    public List<Program> getAllEntities() {
+        return programBean.getAllPrograms();
+    }
+
+    @Override
+    public Program findEntityById(int id) {
+        return programBean.getProgramById(id);
     }
 }

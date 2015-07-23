@@ -11,7 +11,7 @@
                 <h1>Faculties <small>Administration</small></h1>
             </div>
             <h2>Faculty List:</h2>
-            <h:dataTable styleClass="table" value="#{adminFacultyBean.facultyList}" var="f">
+            <h:dataTable styleClass="table" value="#{adminFacultyBean.getAllEntities()}" var="f">
                 <h:column>
                     <f:facet name="header">Id</f:facet>
                     #{f.id}

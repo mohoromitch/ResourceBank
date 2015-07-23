@@ -16,7 +16,7 @@
             <p>If a course is relevant to a program, then it it added to the program, rather than the program added to the course.</p>
 
             <h2>Course Master List:</h2>
-            <h:dataTable styleClass="table" value="#{adminCourseBean.masterList}" var="c">
+            <h:dataTable styleClass="table" value="#{adminCourseBean.getAllEntities()}" var="c">
                 <h:column>
                     <f:facet name="header">Name</f:facet>
                     #{c.courseCode}
@@ -38,7 +38,7 @@
                     <h:inputText id="course-name-input" styleClass="form-control" value="#{adminCourseBean.name}" />
                 </div>
                 <div class="form-group">
-                    <h:commandButton styleClass="btn" action="#{adminCourseBean.addCourse()}" value="Submit"/>
+                    <h:commandButton styleClass="btn" action="#{adminCourseBean.persistEntity()}" value="Submit"/>
                 </div>
             </h:form>
 

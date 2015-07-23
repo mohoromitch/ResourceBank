@@ -2,6 +2,8 @@ package ca.ryerson.scs.cscu.admin;
 
 import ca.ryerson.scs.cscu.ejb.database.Faculty.FacultyBean;
 import ca.ryerson.scs.cscu.entities.Faculty;
+import ca.ryerson.scs.cscu.interfaces.AdminBean;
+import ca.ryerson.scs.cscu.interfaces.DisplayBean;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -20,7 +22,7 @@ import java.util.List;
 
 @Named("adminFacultyBean")
 @RequestScoped
-public class AdminFacultyBean {
+public class AdminFacultyBean implements AdminBean<Faculty>, DisplayBean<Faculty> {
     @EJB
     FacultyBean facultyBean;
     private String name;
@@ -40,16 +42,25 @@ public class AdminFacultyBean {
         ec.redirect( ((HttpServletRequest) ec.getRequest()).getRequestURI());
     }
 
-    void removeFaculty(String name) {
-        //facultyBean.removeFaculty();
-        //TODO: add method to remove elements by name, rather than id
-        //or find out how to get the id's into the table;
+    @Override
+    public void persistEntity() throws IOException {
+        facultyBean.addFaculty(this.getName());
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        ec.redirect( ((HttpServletRequest) ec.getRequest()).getRequestURI());
     }
 
-    public List<Faculty> getFacultyList() {
-        if(this.facultyList == null) {
-            this.facultyList = facultyBean.getAllFaculties();
-        }
-        return facultyList;
+    @Override
+    public void removeEntityById(int id) {
+        //todo: implement this
+    }
+
+    @Override
+    public List<Faculty> getAllEntities() {
+        return facultyBean.getAllFaculties();
+    }
+
+    @Override
+    public Faculty findEntityById(int id) {
+        return facultyBean.findFacultyById(id);
     }
 }

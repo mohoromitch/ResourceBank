@@ -2,6 +2,8 @@ package ca.ryerson.scs.cscu.admin;
 
 import ca.ryerson.scs.cscu.ejb.database.Courses.CourseBean;
 import ca.ryerson.scs.cscu.entities.Course;
+import ca.ryerson.scs.cscu.interfaces.AdminBean;
+import ca.ryerson.scs.cscu.interfaces.DisplayBean;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -17,13 +19,11 @@ import java.util.List;
  */
 @Named("adminCourseBean")
 @RequestScoped
-public class AdminCourseBean {
+public class AdminCourseBean implements AdminBean<Course>, DisplayBean<Course> {
     @EJB
     CourseBean courseBean;
     private String courseCode;
     private String name;
-
-    private List<Course> masterList;
 
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
@@ -41,24 +41,29 @@ public class AdminCourseBean {
         this.name = name;
     }
 
-    public void addCourse() throws IOException {
+    public Course findCourseByCourseCode(String courseCode) {
+        return courseBean.getCourseByCourseCode(courseCode);
+    }
+
+    @Override
+    public void persistEntity() throws IOException {
         courseBean.addCourse(new Course(this.getCourseCode(), this.getName()));
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
     }
 
-    public List<Course> getMasterList() {
-        if(this.masterList == null) {
-            this.setMasterList(courseBean.getAllCourses());
-        }
-        return this.masterList;
+    @Override
+    public void removeEntityById(int id) {
+        //todo: implement this
     }
 
-    private void setMasterList(List<Course> list) {
-        this.masterList = list;
+    @Override
+    public List<Course> getAllEntities() {
+        return courseBean.getAllCourses();
     }
 
-    public Course getCourseByCourseCode(String courseCode) {
-        return courseBean.getCourseByCourseCode(courseCode);
+    @Override
+    public Course findEntityById(int id) {
+        return courseBean.getCourseById(id);
     }
 }
