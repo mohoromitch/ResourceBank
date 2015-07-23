@@ -71,6 +71,11 @@ public class ProgramBeanImpl implements ProgramBean {
     }
 
     @Override
+    public Program getProgramById(int id) {
+        return em.find(Program.class, id);
+    }
+
+    @Override
     public void addProgram(Program program) {
         try {
             this.em.persist(program);
