@@ -26,11 +26,7 @@ public class CourseBeanImp implements CourseBean {
     ProgramBean programBean;
 
     @Override
-    @PostConstruct
     public void initializeDefaults() {
-        this.addCourse(new Course("CPS109", "Introduction to Computer Science I"));
-        this.addCourse(new Course("CPS209", "Introduction to Computer Science II"));
-        this.addCourse(new Course("CPS590", "Introduction to Operating Systems"));
     }
 
     @Override

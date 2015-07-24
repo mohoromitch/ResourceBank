@@ -32,16 +32,15 @@ public class ProgramBeanImpl implements ProgramBean {
     CourseBean courseBean;
 
     @Override
-    @PostConstruct
     public void initializeDefaults() {
-        Program cs = new Program("Computer Science", "CS", facultyBean.findFacultyByName("Science"));
-        cs.addCourse(courseBean.getCourseByCourseCode("CPS109"));
-        cs.addCourse(courseBean.getCourseByCourseCode("CPS209"));
-        cs.addCourse(courseBean.getCourseByCourseCode("CPS590"));
-        this.addProgram(cs);
+        //Program cs = new Program("Computer Science", "CS", facultyBean.findFacultyByName("Science"));
+        //cs.addCourse(courseBean.getCourseByCourseCode("CPS109"));
+        //cs.addCourse(courseBean.getCourseByCourseCode("CPS209"));
+        //cs.addCourse(courseBean.getCourseByCourseCode("CPS590"));
+        //this.addProgram(cs);
         //this.addProgram(new Program("Computer Science", "CS", facultyBean.findFacultyByName("Science")));
-        this.addProgram(new Program("Electrical Engineering", "EE", facultyBean.findFacultyByName("Engineering")));
-        this.addProgram(new Program("Biology", "Bio", facultyBean.findFacultyByName("Science")));
+        //this.addProgram(new Program("Electrical Engineering", "EE", facultyBean.findFacultyByName("Engineering")));
+        //this.addProgram(new Program("Biology", "Bio", facultyBean.findFacultyByName("Science")));
     }
 
     @Override
