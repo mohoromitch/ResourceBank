@@ -3,6 +3,7 @@ package ca.ryerson.scs.cscu.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -27,7 +28,7 @@ public class Course implements Serializable {
     private String courseCode; //ex. CPS109
     private String name; //ex. Introduction to Computer Science I
     @OneToMany
-    private List<Exam> exams;
+    private Collection<Exam> exams;
 
     public Course() {
         this.exams = new ArrayList<>();
@@ -47,11 +48,15 @@ public class Course implements Serializable {
         return name;
     }
 
-    public List<Exam> getExams() {
-        return exams;
-    }
-
     public void addExam(Exam e) {
         this.getExams().add(e);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Collection<Exam> getExams() {
+        return exams;
     }
 }

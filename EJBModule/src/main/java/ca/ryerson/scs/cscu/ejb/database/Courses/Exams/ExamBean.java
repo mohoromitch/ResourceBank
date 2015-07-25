@@ -10,6 +10,6 @@ import java.util.List;
 public interface ExamBean {
     void removeExam();
     List<Exam> getAllExams();
-    Exam getExamById();
-    void addExam();
+    Exam getExamById(int id);
+    Exam addExam(Exam e);
 }

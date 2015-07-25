@@ -2,6 +2,7 @@ package ca.ryerson.scs.cscu.ejb.database.Courses;
 
 import ca.ryerson.scs.cscu.ejb.database.Programs.ProgramBean;
 import ca.ryerson.scs.cscu.entities.Course;
+import ca.ryerson.scs.cscu.entities.Exam;
 import ca.ryerson.scs.cscu.entities.Program;
 
 import javax.annotation.PostConstruct;
@@ -26,7 +27,11 @@ public class CourseBeanImp implements CourseBean {
     ProgramBean programBean;
 
     @Override
+    @PostConstruct
     public void initializeDefaults() {
+        this.addCourse(new Course("CPS109", "Introduction to Computer Science I"));
+        this.addCourse(new Course("CPS209", "Introduction to Computer Science II"));
+        this.addCourse(new Course("CPS590", "Introduction to Operating Systems"));
     }
 
     @Override
@@ -69,5 +74,15 @@ public class CourseBeanImp implements CourseBean {
     @Override
     public boolean entityManagerExists() {
         return (em != null);
+    }
+
+    @Override
+    public void addExamToCourse(int id, Exam exam) {
+        this.getCourseById(id).addExam(exam);
+    }
+
+    @Override
+    public void addExamToCourse(String courseCode, Exam exam) {
+        this.getCourseByCourseCode(courseCode).addExam(exam);
     }
 }

@@ -2,6 +2,7 @@ package ca.ryerson.scs.cscu.admin;
 
 import ca.ryerson.scs.cscu.ejb.database.Courses.CourseBean;
 import ca.ryerson.scs.cscu.entities.Course;
+import ca.ryerson.scs.cscu.entities.Exam;
 import ca.ryerson.scs.cscu.interfaces.AdminBean;
 import ca.ryerson.scs.cscu.interfaces.DisplayBean;
 
@@ -66,4 +67,13 @@ public class AdminCourseBean implements AdminBean<Course>, DisplayBean<Course> {
     public Course findEntityById(int id) {
         return courseBean.getCourseById(id);
     }
+
+    public void addExamToCourseByCourseCode(String courseCode, Exam exam) {
+        this.findCourseByCourseCode(courseCode).addExam(exam);
+    }
+
+    public void addExamToCourseById(int id, Exam exam) {
+        this.findEntityById(id).addExam(exam);
+    }
+
 }

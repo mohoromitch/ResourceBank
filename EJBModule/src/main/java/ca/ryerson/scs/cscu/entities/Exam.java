@@ -1,6 +1,7 @@
 package ca.ryerson.scs.cscu.entities;
 
 import javax.persistence.*;
+import java.io.File;
 import java.io.Serializable;
 
 /**
@@ -21,16 +22,23 @@ public class Exam implements Serializable {
     private short year;
     private String semester; //Winter, Spring, Summer, Fall :)
     private String type; //Exam, Test, Practice Test, Practice Exam
-    private String filename; //prepended with the file location
+    private File document;
+    @ManyToOne
+    private Course ownerCourse;
 
     public Exam() {
     }
 
-    public Exam(short year, String semester, String type, String filename) {
+    public Exam(short year, String semester, String type) {
+        this();
         this.year = year;
         this.semester = semester;
         this.type = type;
-        this.filename = filename;
+    }
+
+    public Exam(short year, String semester, String type, File document) {
+        this(year, semester, type);
+        this.document = document;
     }
 
     public short getYear() {
@@ -57,7 +65,11 @@ public class Exam implements Serializable {
         this.type = type;
     }
 
-    public String getFilename() {
-        return filename;
+    public Course getOwnerCourse() {
+        return ownerCourse;
+    }
+
+    public void setOwnerCourse(Course ownerCourse) {
+        this.ownerCourse = ownerCourse;
     }
 }

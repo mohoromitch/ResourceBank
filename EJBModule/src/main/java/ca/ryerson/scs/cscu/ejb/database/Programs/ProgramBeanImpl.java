@@ -1,15 +1,14 @@
 package ca.ryerson.scs.cscu.ejb.database.Programs;
 
 import ca.ryerson.scs.cscu.ejb.database.Courses.CourseBean;
+import ca.ryerson.scs.cscu.ejb.database.Courses.Exams.ExamBean;
 import ca.ryerson.scs.cscu.ejb.database.Faculty.FacultyBean;
+import ca.ryerson.scs.cscu.entities.Exam;
 import ca.ryerson.scs.cscu.entities.Faculty;
 import ca.ryerson.scs.cscu.entities.Program;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.ejb.EJBException;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
+import javax.ejb.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -31,13 +30,19 @@ public class ProgramBeanImpl implements ProgramBean {
     @EJB
     CourseBean courseBean;
 
+    @EJB
+    ExamBean examBean;
+
     @Override
+    @PostConstruct
     public void initializeDefaults() {
-        //Program cs = new Program("Computer Science", "CS", facultyBean.findFacultyByName("Science"));
-        //cs.addCourse(courseBean.getCourseByCourseCode("CPS109"));
-        //cs.addCourse(courseBean.getCourseByCourseCode("CPS209"));
-        //cs.addCourse(courseBean.getCourseByCourseCode("CPS590"));
-        //this.addProgram(cs);
+        Program cs = new Program("Computer Science", "CS", facultyBean.findFacultyByName("Science"));
+        cs.addCourse(courseBean.getCourseByCourseCode("CPS109"));
+        cs.addCourse(courseBean.getCourseByCourseCode("CPS209"));
+        this.addProgram(cs);
+        courseBean.getCourseByCourseCode("CPS590").addExam(examBean.addExam(new Exam((short) 2015, "Winter", "Test")));
+        cs.addCourse(courseBean.getCourseByCourseCode("CPS590"));
+        courseBean.getCourseByCourseCode("CPS590").addExam(examBean.addExam(new Exam((short) 2014, "Winter", "Test")));
         //this.addProgram(new Program("Computer Science", "CS", facultyBean.findFacultyByName("Science")));
         //this.addProgram(new Program("Electrical Engineering", "EE", facultyBean.findFacultyByName("Engineering")));
         //this.addProgram(new Program("Biology", "Bio", facultyBean.findFacultyByName("Science")));
