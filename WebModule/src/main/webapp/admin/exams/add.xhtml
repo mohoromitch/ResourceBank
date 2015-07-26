@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:body>
+    <ui:composition template="/WEB-INF/templates/template.xhtml">
+        <ui:define name="content">
+            <div class="page-header">
+                <h1>Add Exam <small><h:outputText value="#{param['courseCode']}"/></small></h1>
+            </div>
+
+            <h:form id="exam-form" enctype="multipart/form-data">
+                <div class="form-group">
+                    <h:outputLabel for="type-select" value="Test Type:"/>
+                    <h:selectOneMenu id="type-select" styleClass="form-control" value="#{adminExamBean.type}">
+                        <f:selectItem itemValue="exam" itemLabel="Exam"/>
+                        <f:selectItem itemValue="exam" itemLabel="Midterm"/>
+                        <f:selectItem itemValue="test" itemLabel="Test"/>
+                        <f:selectItem itemValue="p-test" itemLabel="Practice Test"/>
+                        <f:selectItem itemValue="p-questions" itemLabel="Practice Problems"/>
+                        <f:selectItem itemValue="other" itemLabel="Other"/>
+                    </h:selectOneMenu>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="year-select" value="Year:"/>
+                    <h:selectOneMenu id="year-select" styleClass="form-control" value="#{adminExamBean.year}">
+                        <f:selectItem itemValue="2010" itemLabel="2010"/>
+                        <f:selectItem itemValue="2011" itemLabel="2011"/>
+                        <f:selectItem itemValue="2012" itemLabel="2012"/>
+                        <f:selectItem itemValue="2013" itemLabel="2013"/>
+                        <f:selectItem itemValue="2014" itemLabel="2014"/>
+                        <f:selectItem itemValue="2015" itemLabel="2015"/>
+                    </h:selectOneMenu>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="semester-select" value="Semester:"/>
+                    <h:selectOneMenu id="semester-select" styleClass="form-control" value="#{adminExamBean.semester}">
+                        <f:selectItem itemValue="fall" itemLabel="Fall"/>
+                        <f:selectItem itemValue="winter" itemLabel="Winter"/>
+                        <f:selectItem itemValue="spring" itemLabel="Spring"/>
+                        <f:selectItem itemValue="summer" itemLabel="Summer"/>
+                    </h:selectOneMenu>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel value="Choose File:" for="exam-file"/>
+                    <h:inputFile id="exam-file" value="#{adminExamBean.uploadedFile}"/>
+                </div>
+                <div class="form-group">
+                    <h:commandButton type="submit" value="Add Exam" styleClass="btn" action="#{adminExamBean.buildNewExam(param['courseCode'])}"/>
+                </div>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

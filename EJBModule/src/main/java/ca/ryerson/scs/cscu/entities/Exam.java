@@ -22,7 +22,7 @@ public class Exam implements Serializable {
     private short year;
     private String semester; //Winter, Spring, Summer, Fall :)
     private String type; //Exam, Test, Practice Test, Practice Exam
-    private File document;
+    private byte[] file;
     @ManyToOne
     private Course ownerCourse;
 
@@ -36,9 +36,9 @@ public class Exam implements Serializable {
         this.type = type;
     }
 
-    public Exam(short year, String semester, String type, File document) {
+    public Exam(short year, String semester, String type, byte[] file) {
         this(year, semester, type);
-        this.document = document;
+        this.file = file;
     }
 
     public short getYear() {
@@ -71,5 +71,13 @@ public class Exam implements Serializable {
 
     public void setOwnerCourse(Course ownerCourse) {
         this.ownerCourse = ownerCourse;
+    }
+
+    public byte[] getFile() {
+        return file;
+    }
+
+    public void setFile(byte[] file) {
+        this.file = file;
     }
 }

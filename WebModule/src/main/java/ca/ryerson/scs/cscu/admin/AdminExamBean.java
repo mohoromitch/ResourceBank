@@ -5,9 +5,14 @@ import ca.ryerson.scs.cscu.ejb.database.Courses.Exams.ExamBean;
 import ca.ryerson.scs.cscu.entities.Course;
 import ca.ryerson.scs.cscu.entities.Exam;
 
+import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
+import javax.servlet.http.Part;
+import java.io.*;
+import java.nio.file.Files;
 
 /**
  * Created by mitchellmohorovich on 15-07-24.
@@ -24,6 +29,7 @@ public class AdminExamBean {
     private short year;
     private String semester; //Winter, Spring, Summer, Fall :)
     private String type; //Exam, Test, Practice Test, Practice Exam
+    private Part uploadedFile;
 
     public void setYear(short year) {
         this.year = year;
@@ -52,10 +58,39 @@ public class AdminExamBean {
     public Exam newExam(String courseCode) {
         Exam returnExam = new Exam(this.getYear(), this.getSemester(), this.getType());
         returnExam.setOwnerCourse(courseBean.getCourseByCourseCode(courseCode));
+        returnExam.setFile(this.toByteArray(this.getUploadedFile()));
         return returnExam;
     }
 
-    public void buildNewExam(String uriCourseCode) {
+    public String buildNewExam(String uriCourseCode) {
         courseBean.addExamToCourse(uriCourseCode, examBean.addExam(this.newExam(uriCourseCode)));
+        return "success";
+    }
+
+    public String upload() {
+        //String uriCourseCode = "CPS590";
+        //courseBean.addExamToCourse(uriCourseCode, examBean.addExam(this.newExam(uriCourseCode)));
+        return "success";
+    }
+
+    private byte[] toByteArray(Part file) {
+        InputStream input = null;
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        try {
+            input = file.getInputStream();
+            byte[] buffer = new byte[1024];
+            for (int length = 0; (length = input.read(buffer)) > 0; output.write(buffer, 0, length)) ;
+        } catch (IOException e) {
+            return null;
+        }
+        return output.toByteArray();
+    }
+
+    public void setUploadedFile(Part uploadedFile) {
+        this.uploadedFile = uploadedFile;
+    }
+
+    public Part getUploadedFile() {
+        return uploadedFile;
     }
 }
