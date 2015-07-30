@@ -21,6 +21,19 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ExamDownloadServlet</servlet-name>
+        <servlet-class>ca.ryerson.scs.cscu.downloads.exams.ExamDownloadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ExamDownloadServlet</servlet-name>
+        <url-pattern>/downloads/exams/exam</url-pattern>
+    </servlet-mapping>
+
+
+
+
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>

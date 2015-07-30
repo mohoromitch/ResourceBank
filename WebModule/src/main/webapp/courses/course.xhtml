@@ -15,18 +15,24 @@
             </div>
             <h2>Test List:</h2>
             <h:dataTable styleClass="table" value="#{courseDisplayBean.findCourseByCourseCode(uriCourseCode).exams}"
-                         var="c">
+                         var="ce">
                 <h:column>
                     <f:facet name="header">Type</f:facet>
-                    #{c.type}
+                    #{ce.type}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Semester</f:facet>
-                    #{c.semester}
+                    #{ce.semester}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Year</f:facet>
-                    #{c.year}
+                    #{ce.year}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Download</f:facet>
+                    <a href="/downloads/exams/exam?examID=#{ce.id}" class="btn btn-success btn-sm">
+                        Download
+                    </a>
                 </h:column>
             </h:dataTable>
 

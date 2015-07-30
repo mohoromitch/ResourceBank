@@ -80,4 +80,8 @@ public class Exam implements Serializable {
     public void setFile(byte[] file) {
         this.file = file;
     }
+
+    public int getId() {
+        return this.id;
+    }
 }
