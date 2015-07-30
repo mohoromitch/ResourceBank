@@ -62,15 +62,8 @@ public class AdminExamBean {
         return returnExam;
     }
 
-    public String buildNewExam(String uriCourseCode) {
+    public void buildNewExam(String uriCourseCode) {
         courseBean.addExamToCourse(uriCourseCode, examBean.addExam(this.newExam(uriCourseCode)));
-        return "success";
-    }
-
-    public String upload() {
-        //String uriCourseCode = "CPS590";
-        //courseBean.addExamToCourse(uriCourseCode, examBean.addExam(this.newExam(uriCourseCode)));
-        return "success";
     }
 
     private byte[] toByteArray(Part file) {
