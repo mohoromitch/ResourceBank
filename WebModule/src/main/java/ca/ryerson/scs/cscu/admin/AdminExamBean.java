@@ -9,6 +9,7 @@ import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.Part;
 import java.io.*;
@@ -62,12 +63,13 @@ public class AdminExamBean {
         return returnExam;
     }
 
-    public void buildNewExam(String uriCourseCode) {
+    public void buildNewExam(String uriCourseCode) throws IOException {
         courseBean.addExamToCourse(uriCourseCode, examBean.addExam(this.newExam(uriCourseCode)));
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/courses/" + uriCourseCode);
     }
 
     private byte[] toByteArray(Part file) {
-        InputStream input = null;
+        InputStream input;
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         try {
             input = file.getInputStream();

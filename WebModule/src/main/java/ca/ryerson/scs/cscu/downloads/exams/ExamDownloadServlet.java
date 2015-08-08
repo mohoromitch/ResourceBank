@@ -47,11 +47,12 @@ public class ExamDownloadServlet extends HttpServlet {
         );
 
         response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition", "attachment;filename="+filename+".pdf");
+        response.setHeader("Content-Disposition", "application;filename="+filename+".pdf");
 
 
         OutputStream os = response.getOutputStream();
 
+        //TODO: Write the exam buffered.
         os.write(examFile);
         os.flush();
         os.close();
