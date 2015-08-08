@@ -8,47 +8,68 @@
     <ui:composition template="/WEB-INF/templates/template.xhtml">
         <ui:define name="content">
             <div class="page-header">
-                <h1>Add Exam <small><h:outputText value="#{param['courseCode']}"/></small></h1>
+                <h1>Add Exam
+                    <small><h:outputText value="#{param['courseCode']}"/></small>
+                </h1>
             </div>
 
-            <h:form id="exam-form" enctype="multipart/form-data">
-                <div class="form-group">
-                    <h:outputLabel for="type-select" value="Test Type:"/>
-                    <h:selectOneMenu id="type-select" styleClass="form-control" value="#{adminExamBean.type}">
-                        <f:selectItem itemValue="exam" itemLabel="Exam"/>
-                        <f:selectItem itemValue="exam" itemLabel="Midterm"/>
-                        <f:selectItem itemValue="test" itemLabel="Test"/>
-                        <f:selectItem itemValue="p-test" itemLabel="Practice Test"/>
-                        <f:selectItem itemValue="p-questions" itemLabel="Practice Problems"/>
-                        <f:selectItem itemValue="other" itemLabel="Other"/>
-                    </h:selectOneMenu>
+            <h:form id="exam-form" styleClass="form-horizontal" enctype="multipart/form-data">
+                <div class="form-group form-group-sm">
+                    <h:outputLabel for="type-select" styleClass="col-md-2 control-label" value="Test Type:"/>
+
+                    <div class="col-sm-10">
+                        <h:selectOneMenu id="type-select" styleClass="form-control" value="#{adminExamBean.type}">
+                            <f:selectItem itemValue="exam" itemLabel="Exam"/>
+                            <f:selectItem itemValue="exam" itemLabel="Midterm"/>
+                            <f:selectItem itemValue="test" itemLabel="Test"/>
+                            <f:selectItem itemValue="p-test" itemLabel="Practice Test"/>
+                            <f:selectItem itemValue="p-questions" itemLabel="Practice Problems"/>
+                            <f:selectItem itemValue="other" itemLabel="Other"/>
+                        </h:selectOneMenu>
+
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <h:outputLabel for="year-select" styleClass="col-md-2 control-label" value="Year:"/>
+
+                    <div class="col-md-10">
+                        <h:selectOneMenu id="year-select" styleClass="form-control"
+                                         value="#{adminExamBean.year}">
+                            <f:selectItem itemValue="2010" itemLabel="2010"/>
+                            <f:selectItem itemValue="2011" itemLabel="2011"/>
+                            <f:selectItem itemValue="2012" itemLabel="2012"/>
+                            <f:selectItem itemValue="2013" itemLabel="2013"/>
+                            <f:selectItem itemValue="2014" itemLabel="2014"/>
+                            <f:selectItem itemValue="2015" itemLabel="2015"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <h:outputLabel for="semester-select" styleClass="col-md-2 control-label" value="Semester:"/>
+
+                    <div class="col-md-10">
+                        <h:selectOneMenu id="semester-select" styleClass="form-control"
+                                         value="#{adminExamBean.semester}">
+                            <f:selectItem itemValue="fall" itemLabel="Fall"/>
+                            <f:selectItem itemValue="winter" itemLabel="Winter"/>
+                            <f:selectItem itemValue="spring" itemLabel="Spring"/>
+                            <f:selectItem itemValue="summer" itemLabel="Summer"/>
+                        </h:selectOneMenu>
+
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <h:outputLabel value="Choose File:" styleClass="col-md-2 control-label" for="exam-file"/>
+
+                    <div class="col-md-10">
+                        <h:inputFile id="exam-file" value="#{adminExamBean.uploadedFile}"/>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <h:outputLabel for="year-select" value="Year:"/>
-                    <h:selectOneMenu id="year-select" styleClass="form-control" value="#{adminExamBean.year}">
-                        <f:selectItem itemValue="2010" itemLabel="2010"/>
-                        <f:selectItem itemValue="2011" itemLabel="2011"/>
-                        <f:selectItem itemValue="2012" itemLabel="2012"/>
-                        <f:selectItem itemValue="2013" itemLabel="2013"/>
-                        <f:selectItem itemValue="2014" itemLabel="2014"/>
-                        <f:selectItem itemValue="2015" itemLabel="2015"/>
-                    </h:selectOneMenu>
-                </div>
-                <div class="form-group">
-                    <h:outputLabel for="semester-select" value="Semester:"/>
-                    <h:selectOneMenu id="semester-select" styleClass="form-control" value="#{adminExamBean.semester}">
-                        <f:selectItem itemValue="fall" itemLabel="Fall"/>
-                        <f:selectItem itemValue="winter" itemLabel="Winter"/>
-                        <f:selectItem itemValue="spring" itemLabel="Spring"/>
-                        <f:selectItem itemValue="summer" itemLabel="Summer"/>
-                    </h:selectOneMenu>
-                </div>
-                <div class="form-group">
-                    <h:outputLabel value="Choose File:" for="exam-file"/>
-                    <h:inputFile id="exam-file" value="#{adminExamBean.uploadedFile}"/>
-                </div>
-                <div class="form-group">
-                    <h:commandButton type="submit" value="Add Exam" styleClass="btn" action="#{adminExamBean.buildNewExam(param['courseCode'])}"/>
+                    <div class="col-md-10 col-md-offset-2">
+                        <h:commandButton type="submit" value="Add Exam" styleClass="btn"
+                                         action="#{adminExamBean.buildNewExam(param['courseCode'])}"/>
+                    </div>
                 </div>
             </h:form>
 
