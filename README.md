@@ -27,7 +27,7 @@ We will be adding user accounts to the page in this phase, which will include us
 ###Phase 3: Admin Interface MILESTONE###
 The admin interface will be added in this phase. Admins will be able to add and remove documents and courses. Admins will also be able to ban users.
 
-###Phase 4: User Interfaction RELASE###
+###Phase 4: User Interaction RELASE###
 In this phase, users are able to register and login, and admins are able to control the users, so it should be safe to let users help maintain the site. Users will be able to upload documents to the site. 
 
 ###Phase 5: Textbooks RELEASE###
@@ -43,7 +43,6 @@ The project was made, and edited with IntelliJ Ultimate, it would probably be be
 
 - Java 8 JDK
 - Java EE 7
-- [GlassFish Application Server](https://glassfish.java.net)
 - [PrettyFaces](http://www.ocpsoft.org/prettyfaces/)
 - Bootstrap (included)
 - JQuery (included)
@@ -51,8 +50,6 @@ The project was made, and edited with IntelliJ Ultimate, it would probably be be
 ####Notes:####
 #####Java 8 SDK####
 You should know how to download, install, and configure this. ☺
-#####Glassfish Aplpication Server & Java EE
-You will have to download and add GlassFish as an application server in IntelliJ. When you do that it *should* use the included Java EE JDK for the project.
 
 ####PrettyFaces####
 You will most likely need to add PrettyFaces to the project yourself, which is pretty easy. In Project Settings, add rewrite-servlet and rewrite-config-prettyfaces versions 2.0.12 through Maven.
