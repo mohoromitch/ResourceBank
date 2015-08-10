@@ -18,15 +18,15 @@
                          var="ce">
                 <h:column>
                     <f:facet name="header">Type</f:facet>
-                    #{ce.type}
+                        #{ce.type.label}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Semester</f:facet>
-                    #{ce.semester}
+                        #{ce.semester.label}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Year</f:facet>
-                    #{ce.year}
+                        #{ce.year}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Download</f:facet>
@@ -34,10 +34,12 @@
                         Download
                     </a>
                 </h:column>
+                <h:column rendered="#{securityBean.userAdmin}">
+                    <f:facet name="header">Edit</f:facet>
+                    <a href="/admin/exams/modify/#{ce.id}"><i class="glyphicon glyphicon-pencil"/></a>
+                </h:column>
             </h:dataTable>
-
-            <h2>Actions:</h2>
-            <a href="/admin/exams/add.xhtml?courseCode=#{uriCourseCode}" class="btn btn-default">Add New Exam</a>
+            <a href="/admin/exams/add.xhtml?courseCode=#{uriCourseCode}" class="btn btn-default pull-left">Add New Exam</a>
         </ui:define>
     </ui:composition>
 </h:body>

@@ -40,9 +40,15 @@ public class ProgramBeanImpl implements ProgramBean {
         cs.addCourse(courseBean.getCourseByCourseCode("CPS109"));
         cs.addCourse(courseBean.getCourseByCourseCode("CPS209"));
         this.addProgram(cs);
-        courseBean.getCourseByCourseCode("CPS590").addExam(examBean.addExam(new Exam((short) 2015, "Winter", "Test")));
+
+        Exam e = examBean.addExam(new Exam((short) 2015, Exam.Semester.winter, Exam.Type.exam));
+        e.setOwnerCourse(courseBean.getCourseByCourseCode("CPS590"));
+        courseBean.getCourseByCourseCode("CPS590").addExam(e);
         cs.addCourse(courseBean.getCourseByCourseCode("CPS590"));
-        courseBean.getCourseByCourseCode("CPS590").addExam(examBean.addExam(new Exam((short) 2014, "Winter", "Test")));
+
+        e = examBean.addExam(new Exam((short) 2014, Exam.Semester.fall, Exam.Type.midterm));
+        e.setOwnerCourse(courseBean.getCourseByCourseCode("CPS590"));
+        courseBean.getCourseByCourseCode("CPS590").addExam(e);
         //this.addProgram(new Program("Computer Science", "CS", facultyBean.findFacultyByName("Science")));
         //this.addProgram(new Program("Electrical Engineering", "EE", facultyBean.findFacultyByName("Engineering")));
         //this.addProgram(new Program("Biology", "Bio", facultyBean.findFacultyByName("Science")));

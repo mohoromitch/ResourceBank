@@ -43,4 +43,33 @@ public class ExamBeanImpl implements ExamBean {
         em.persist(e);
         return e;
     }
+
+    @Override
+    public void persistExam(int id) {
+        em.persist(this.getExamById(id));
+    }
+
+    @Override
+    public Exam setExamType(int id, Exam.Type type) {
+        Exam exam = em.find(Exam.class, id);
+        exam.setType(type);
+        em.persist(exam);
+        return exam;
+    }
+
+    @Override
+    public Exam setExamYear(int id, short year) {
+        Exam exam = em.find(Exam.class, id);
+        exam.setYear(year);
+        em.persist(exam);
+        return exam;
+    }
+
+    @Override
+    public Exam setExamSemester(int id, Exam.Semester semester) {
+        Exam exam = em.find(Exam.class, id);
+        exam.setSemester(semester);
+        em.persist(exam);
+        return exam;
+    }
 }

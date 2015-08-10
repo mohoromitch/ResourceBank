@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jstl/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:metadata>
+    <f:event type="preRenderView" listener="#{adminExamBean.setExam(adminExamBean.getExamById(uriExamId))}"/>
+</f:metadata>
 <h:body>
     <ui:composition template="/WEB-INF/templates/template.xhtml">
         <ui:define name="content">
             <div class="page-header">
-                <h1>Add Exam
-                    <small><h:outputText value="#{param['courseCode']}"/></small>
+                <h1>Exam
+                    <small>Administration</small>
                 </h1>
+                <p>Exam ##{uriExamId} of #{adminExamBean.exam.ownerCourse.courseCode}</p>
             </div>
-
-            <h:form id="exam-form" styleClass="form-horizontal" enctype="multipart/form-data">
+            <h:form id="exam-edit-form" styleClass="form-horizontal">
                 <div class="form-group form-group-sm">
                     <h:outputLabel for="type-select" styleClass="col-md-2 control-label" value="Test Type:"/>
 
                     <div class="col-sm-10">
-                        <h:selectOneMenu id="type-select" styleClass="form-control" value="#{adminExamBean.type}">
+                        <h:selectOneMenu id="type-select" styleClass="form-control" value="#{adminExamBean.exam.type}">
                             <f:selectItems value="#{adminExamBean.types}" var="type" itemValue="#{type}"
                                            itemLabel="#{type.label}"/>
                         </h:selectOneMenu>
@@ -30,7 +34,7 @@
 
                     <div class="col-md-10">
                         <h:selectOneMenu id="year-select" styleClass="form-control"
-                                         value="#{adminExamBean.year}">
+                                         value="#{adminExamBean.exam.year}">
                             <f:selectItems value="#{adminExamBean.yearRange}" var="year" itemValue="#{year}"/>
                         </h:selectOneMenu>
                     </div>
@@ -40,28 +44,17 @@
 
                     <div class="col-md-10">
                         <h:selectOneMenu id="semester-select" styleClass="form-control"
-                                         value="#{adminExamBean.semester}">
-                            <f:selectItems value="#{adminExamBean.semesters}" var="semester" itemValue="#{semester}"
-                                           itemLabel="#{semester.label}"/>
+                                         value="#{adminExamBean.exam.semester}">
+                            <f:selectItems value="#{adminExamBean.semesters}" var="semester" itemValue="#{semester}" itemLabel="#{semester.label}"/>
                         </h:selectOneMenu>
-
-                    </div>
-                </div>
-                <div class="form-group form-group-sm">
-                    <h:outputLabel value="Choose File:" styleClass="col-md-2 control-label" for="exam-file"/>
-
-                    <div class="col-md-10">
-                        <h:inputFile id="exam-file" value="#{adminExamBean.uploadedFile}"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-10 col-md-offset-2">
-                        <h:commandButton type="submit" value="Add Exam" styleClass="btn btn-default"
-                                         action="#{adminExamBean.buildNewExam(param['courseCode'])}"/>
+                        <h:commandButton type="submit" styleClass="btn btn-default" value="Save Changes" action="#{adminExamBean.editExam(uriExamId)}"/>
                     </div>
                 </div>
             </h:form>
-
         </ui:define>
     </ui:composition>
 </h:body>

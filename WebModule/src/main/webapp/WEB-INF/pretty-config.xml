@@ -17,4 +17,9 @@
         <view-id value="/courses/course.xhtml"/>
     </url-mapping>
 
+    <url-mapping id="adminExam">
+        <pattern value="/admin/exams/modify/#{uriExamId}" />
+        <view-id value="/admin/exams/exam.xhtml"/>
+    </url-mapping>
+
 </pretty-config>

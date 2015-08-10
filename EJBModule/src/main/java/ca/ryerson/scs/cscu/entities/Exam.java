@@ -20,23 +20,63 @@ public class Exam implements Serializable {
     @GeneratedValue
     private int id;
     private short year;
-    private String semester; //Winter, Spring, Summer, Fall :)
-    private String type; //Exam, Test, Practice Test, Practice Exam
+    @Enumerated(EnumType.ORDINAL) //
+    private Semester semester; //Winter, Spring, Summer, Fall :)
+    @Enumerated(EnumType.STRING)
+    private Type type; //Exam, Test, Practice Test, Practice Exam
     private byte[] file;
     @ManyToOne
     private Course ownerCourse;
 
-    public Exam() {
+    @Transient
+    private boolean editable; //Used for editing the entities in the table rows.
+
+    public enum Type {
+        exam("Exam"),
+        test("Test"),
+        midterm("Midterm"),
+        praticeTest("Practice Test"),
+        practiceProblems("Practice Problems"),
+        other("Other");
+
+        private String label;
+        Type(String label) {
+            this.label = label;
+        }
+        public String getLabel() {
+            return this.label;
+        }
     }
 
-    public Exam(short year, String semester, String type) {
+    public enum Semester {
+        fall("Fall"),
+        winter("Winter"),
+        spring("Spring"),
+        summer("Summer"),;
+
+        private final String label;
+
+        Semester(String label) {
+            this.label = label;
+        }
+
+        public String getLabel() {
+            return label;
+        }
+    }
+
+    public Exam() {
+        editable = false;
+    }
+
+    public Exam(short year, Semester semester, Type type) {
         this();
         this.year = year;
         this.semester = semester;
         this.type = type;
     }
 
-    public Exam(short year, String semester, String type, byte[] file) {
+    public Exam(short year, Semester semester, Type type, byte[] file) {
         this(year, semester, type);
         this.file = file;
     }
@@ -49,19 +89,19 @@ public class Exam implements Serializable {
         this.year = year;
     }
 
-    public String getSemester() {
+    public Semester getSemester() {
         return semester;
     }
 
-    public void setSemester(String semester) {
+    public void setSemester(Semester semester) {
         this.semester = semester;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
@@ -83,5 +123,13 @@ public class Exam implements Serializable {
 
     public int getId() {
         return this.id;
+    }
+
+    public boolean isEditable() {
+        return this.editable;
+    }
+
+    public void setEditable(boolean editable) {
+        this.editable = editable;
     }
 }

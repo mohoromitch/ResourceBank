@@ -12,4 +12,8 @@ public interface ExamBean {
     List<Exam> getAllExams();
     Exam getExamById(int id);
     Exam addExam(Exam e);
+    void persistExam(int id);
+    Exam setExamType(int id, Exam.Type type);
+    Exam setExamYear(int id, short year);
+    Exam setExamSemester(int id, Exam.Semester semester);
 }
