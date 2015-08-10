@@ -3,7 +3,6 @@ package ca.ryerson.scs.cscu.ejb.database.Courses;
 import ca.ryerson.scs.cscu.ejb.database.Programs.ProgramBean;
 import ca.ryerson.scs.cscu.entities.Course;
 import ca.ryerson.scs.cscu.entities.Exam;
-import ca.ryerson.scs.cscu.entities.Program;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;

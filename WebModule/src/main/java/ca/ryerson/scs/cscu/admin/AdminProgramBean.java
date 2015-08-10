@@ -2,7 +2,6 @@ package ca.ryerson.scs.cscu.admin;
 
 import ca.ryerson.scs.cscu.ejb.database.Faculty.FacultyBean;
 import ca.ryerson.scs.cscu.ejb.database.Programs.ProgramBean;
-import ca.ryerson.scs.cscu.entities.Course;
 import ca.ryerson.scs.cscu.entities.Faculty;
 import ca.ryerson.scs.cscu.entities.Program;
 import ca.ryerson.scs.cscu.interfaces.AdminBean;
