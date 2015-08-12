@@ -34,6 +34,7 @@ public class AdminExamBean {
     private Exam.Semester semester; //Winter, Spring, Summer, Fall :)
     private Exam.Type type; //Exam, Test, Practice Test, Practice Exam
     private Part uploadedFile;
+    private String contentType;
     private Exam exam;
 
     private final int MINIMUM_YEAR = 1995;
@@ -88,6 +89,7 @@ public class AdminExamBean {
     }
 
     public void setUploadedFile(Part uploadedFile) {
+        this.contentType = uploadedFile.getContentType();
         this.uploadedFile = uploadedFile;
     }
 
@@ -149,5 +151,14 @@ public class AdminExamBean {
 
     public void setExam(Exam exam) {
         this.exam = exam;
+    }
+
+    public void deleteExamById(int id) {
+        examBean.deleteExam(id);
+    }
+
+    public String deleteExamByIdAndRedirect(int id) throws IOException {
+        this.deleteExamById(id);
+        return String.valueOf(id);
     }
 }

@@ -8,6 +8,7 @@ import ca.ryerson.scs.cscu.ejb.database.Courses.CourseBean;
 import ca.ryerson.scs.cscu.ejb.database.Courses.Exams.ExamBean;
 import ca.ryerson.scs.cscu.entities.Exam;
 
+import java.awt.datatransfer.DataFlavor;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -46,8 +47,8 @@ public class ExamDownloadServlet extends HttpServlet {
                 exam.getType()
         );
 
-        response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition", "application;filename="+filename+".pdf");
+        response.setContentType(exam.getContentType());
+        response.setHeader("Content-Disposition", "inline;filename=" + filename + ".pdf");
 
 
         OutputStream os = response.getOutputStream();

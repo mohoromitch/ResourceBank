@@ -27,6 +27,7 @@ public class Exam implements Serializable {
     private byte[] file;
     @ManyToOne
     private Course ownerCourse;
+    private String contentType;
 
     @Transient
     private boolean editable; //Used for editing the entities in the table rows.
@@ -81,6 +82,11 @@ public class Exam implements Serializable {
         this.file = file;
     }
 
+    public Exam(short year, Semester semester, Type type, byte[] file, String contentType) {
+        this(year, semester, type, file);
+        this.contentType = contentType;
+    }
+
     public short getYear() {
         return year;
     }
@@ -131,5 +137,13 @@ public class Exam implements Serializable {
 
     public void setEditable(boolean editable) {
         this.editable = editable;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    public String getContentType() {
+        return contentType;
     }
 }
