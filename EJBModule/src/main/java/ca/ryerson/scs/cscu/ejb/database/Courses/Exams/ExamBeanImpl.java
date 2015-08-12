@@ -1,6 +1,7 @@
 package ca.ryerson.scs.cscu.ejb.database.Courses.Exams;
 
 import ca.ryerson.scs.cscu.ejb.database.Courses.CourseBean;
+import ca.ryerson.scs.cscu.entities.Course;
 import ca.ryerson.scs.cscu.entities.Exam;
 
 import javax.ejb.EJB;
@@ -71,5 +72,21 @@ public class ExamBeanImpl implements ExamBean {
         exam.setSemester(semester);
         em.persist(exam);
         return exam;
+    }
+
+    @Override
+    public Exam setExamOwnerCourse(int id, Course course) {
+        Exam exam = em.find(Exam.class, id);
+        exam.setOwnerCourse(course);
+        em.persist(exam);
+        return exam;
+    }
+
+    @Override
+    public void deleteExam(int id) {
+        Exam exam = this.em.find(Exam.class, id);
+        exam.getOwnerCourse().removeExam(exam);
+        exam.setOwnerCourse(null);
+        em.remove(exam);
     }
 }

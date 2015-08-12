@@ -27,7 +27,8 @@ public class Course implements Serializable {
     private int id;
     private String courseCode; //ex. CPS109
     private String name; //ex. Introduction to Computer Science I
-    @OneToMany
+    private String description; //ie. What's on the Ryerson course calendar
+    @OneToMany(cascade = CascadeType.REMOVE)
     private Collection<Exam> exams;
 
     public Course() {
@@ -58,5 +59,9 @@ public class Course implements Serializable {
 
     public Collection<Exam> getExams() {
         return exams;
+    }
+
+    public void removeExam(Exam exam) {
+        this.exams.remove(exam);
     }
 }
