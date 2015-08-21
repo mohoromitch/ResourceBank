@@ -21,5 +21,6 @@ public interface ProgramBean {
     void addProgram(Program program);
     void addProgram(String name, String shortName);
     void addProgram(String name, String shortName, Faculty faculty);
+    void addCourseToProgramByShortName(int courseId, String shortName);
     boolean entityManagerExists();
 }

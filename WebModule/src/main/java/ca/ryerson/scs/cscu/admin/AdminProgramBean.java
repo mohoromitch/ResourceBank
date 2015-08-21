@@ -34,6 +34,8 @@ public class AdminProgramBean implements AdminBean<Program>, DisplayBean<Program
     String shortName;
     int facultyId;
     List<Program> allPrograms;
+    int programId;
+    int courseId;
 
     public String getName() {
         return name;
@@ -90,5 +92,20 @@ public class AdminProgramBean implements AdminBean<Program>, DisplayBean<Program
     @Override
     public Program findEntityById(int id) {
         return programBean.getProgramById(id);
+    }
+
+    public void addCourseToProgram(int courseId, int programId) {
+    }
+
+    public void addCourseToProgramByShortCode(int courseId, String shortCode) {
+        programBean.addCourseToProgramByShortName(courseId, shortCode);
+    }
+
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
     }
 }

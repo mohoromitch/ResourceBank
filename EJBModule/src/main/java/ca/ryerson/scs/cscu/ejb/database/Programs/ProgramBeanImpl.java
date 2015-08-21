@@ -104,6 +104,13 @@ public class ProgramBeanImpl implements ProgramBean {
     }
 
     @Override
+    public void addCourseToProgramByShortName(int courseId, String shortName) {
+        Program program = this.getProgramByShortName(shortName);
+        program.addCourse(courseBean.getCourseById(courseId));
+        em.persist(program);
+    }
+
+    @Override
     public boolean entityManagerExists() {
         return (em != null);
     }

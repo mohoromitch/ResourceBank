@@ -14,7 +14,11 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Created by mitchellmohorovich on 15-07-19.
@@ -64,6 +68,12 @@ public class AdminCourseBean implements AdminBean<Course>, DisplayBean<Course> {
         return courseBean.getAllCourses();
     }
 
+    public Map<String, Course> getAllEntitiesAsMap() {
+        List<Course> allEntities = this.getAllEntities();
+        Map<String, Course> allCourseMap = allEntities.stream().collect(Collectors.toMap(Course::getCourseCode, Function.identity()));
+        return allCourseMap;
+    }
+
     @Override
     public Course findEntityById(int id) {
         return courseBean.getCourseById(id);
@@ -75,6 +85,14 @@ public class AdminCourseBean implements AdminBean<Course>, DisplayBean<Course> {
 
     public void addExamToCourseById(int id, Exam exam) {
         this.findEntityById(id).addExam(exam);
+    }
+
+    public Map<String, Course> getAllEntitiesDifference(List<Course> courseList) {
+        Map<String, Course> allCourseMap = this.getAllEntitiesAsMap();
+        for(Course c: courseList) {
+            allCourseMap.remove(c.getCourseCode());
+        }
+        return allCourseMap;
     }
 
 }
