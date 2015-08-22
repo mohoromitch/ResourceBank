@@ -9,6 +9,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.sql.DataSource;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by mitchellmohorovich on 15-07-17.
@@ -26,6 +27,8 @@ public class StatusBean implements Serializable {
 
     @EJB
     FacultyBean facultyBean;
+
+    Date date;
 
     public boolean dataSourceInjected() {
         return ds != null;

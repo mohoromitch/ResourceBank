@@ -1,11 +1,11 @@
 package ca.ryerson.scs.cscu.ejb.database.Programs;
 
 import ca.ryerson.scs.cscu.ejb.database.Courses.CourseBean;
+import ca.ryerson.scs.cscu.ejb.database.Courses.CourseManagementForms.CourseManagementFormBean;
 import ca.ryerson.scs.cscu.ejb.database.Courses.Exams.ExamBean;
 import ca.ryerson.scs.cscu.ejb.database.Faculty.FacultyBean;
-import ca.ryerson.scs.cscu.entities.Exam;
-import ca.ryerson.scs.cscu.entities.Faculty;
-import ca.ryerson.scs.cscu.entities.Program;
+import ca.ryerson.scs.cscu.entities.*;
+import ca.ryerson.scs.cscu.enums.Semester;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.*;
@@ -33,6 +33,9 @@ public class ProgramBeanImpl implements ProgramBean {
     @EJB
     ExamBean examBean;
 
+    @EJB
+    CourseManagementFormBean courseManagementFormBean;
+
     @Override
     @PostConstruct
     public void initializeDefaults() {
@@ -41,12 +44,16 @@ public class ProgramBeanImpl implements ProgramBean {
         cs.addCourse(courseBean.getCourseByCourseCode("CPS209"));
         this.addProgram(cs);
 
-        Exam e = examBean.addExam(new Exam((short) 2015, Exam.Semester.winter, Exam.Type.exam));
+        Exam e = examBean.addExam(new Exam((short) 2015, Semester.winter, Exam.Type.exam));
         e.setOwnerCourse(courseBean.getCourseByCourseCode("CPS590"));
         courseBean.getCourseByCourseCode("CPS590").addExam(e);
         cs.addCourse(courseBean.getCourseByCourseCode("CPS590"));
 
-        e = examBean.addExam(new Exam((short) 2014, Exam.Semester.fall, Exam.Type.midterm));
+        CourseManagementForm testCMF = new CourseManagementForm((short) 1995, Semester.fall, "Dr. Derpanis", courseBean.getCourseByCourseCode("CPS109"));
+        courseManagementFormBean.addCourseManagementForm(testCMF);
+        courseBean.addCourseManagementFormToCourse(testCMF, courseBean.getCourseByCourseCode("CPS109").getId());
+
+        e = examBean.addExam(new Exam((short) 2014, Semester.fall, Exam.Type.midterm));
         e.setOwnerCourse(courseBean.getCourseByCourseCode("CPS590"));
         courseBean.getCourseByCourseCode("CPS590").addExam(e);
         //this.addProgram(new Program("Computer Science", "CS", facultyBean.findFacultyByName("Science")));

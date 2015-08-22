@@ -56,7 +56,7 @@ public class Program implements Serializable {
         return name;
     }
 
-    public String getShortname() {
+    public String getShortName() {
         return shortName;
     }
 

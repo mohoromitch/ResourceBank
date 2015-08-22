@@ -1,10 +1,9 @@
 package ca.ryerson.scs.cscu.ejb.database.Courses.Exams;
 
-import ca.ryerson.scs.cscu.ejb.database.Courses.CourseBean;
 import ca.ryerson.scs.cscu.entities.Course;
 import ca.ryerson.scs.cscu.entities.Exam;
+import ca.ryerson.scs.cscu.enums.Semester;
 
-import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.persistence.EntityManager;
@@ -20,11 +19,6 @@ import java.util.List;
 public class ExamBeanImpl implements ExamBean {
     @PersistenceContext(unitName = "jdbcPU")
     EntityManager em;
-
-    @Override
-    public void removeExam() {
-        //todo: implement this
-    }
 
     @Override
     public List<Exam> getAllExams() {
@@ -67,7 +61,7 @@ public class ExamBeanImpl implements ExamBean {
     }
 
     @Override
-    public Exam setExamSemester(int id, Exam.Semester semester) {
+    public Exam setExamSemester(int id, Semester semester) {
         Exam exam = em.find(Exam.class, id);
         exam.setSemester(semester);
         em.persist(exam);

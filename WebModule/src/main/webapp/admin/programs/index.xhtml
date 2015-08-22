@@ -47,12 +47,13 @@
                         <h:inputText id="program-shortname" styleClass="form-control" value="#{adminProgramBean.shortName}"/>
                 </div>
                 <div class="form-group">
-                    <h:selectOneMenu styleClass="form-control" value="#{adminProgramBean.facultyId}">
+                    <h:outputLabel for="faculty-select" value="Faculty:"/>
+                    <h:selectOneMenu id="faculty-select" styleClass="form-control" value="#{adminProgramBean.facultyId}">
                         <f:selectItems value="#{adminFacultyBean.getAllEntities()}" var="faculty" itemValue="#{faculty.id}" itemLabel="#{faculty.name}"/>
                     </h:selectOneMenu>
                 </div>
                 <div class="form-group">
-                    <h:commandButton styleClass="btn" value="Submit" action="#{adminProgramBean.persistEntity()}"/>
+                    <h:commandButton styleClass="btn btn-success" value="Submit" action="#{adminProgramBean.persistEntity()}"/>
                 </div>
             </h:form>
         </ui:define>
