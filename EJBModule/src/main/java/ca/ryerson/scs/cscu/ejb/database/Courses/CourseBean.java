@@ -1,6 +1,7 @@
 package ca.ryerson.scs.cscu.ejb.database.Courses;
 
 import ca.ryerson.scs.cscu.entities.Course;
+import ca.ryerson.scs.cscu.entities.CourseManagementForm;
 import ca.ryerson.scs.cscu.entities.Exam;
 import ca.ryerson.scs.cscu.entities.Program;
 
@@ -19,4 +20,5 @@ public interface CourseBean {
     boolean entityManagerExists();
     void addExamToCourse(int id, Exam exam);
     void addExamToCourse(String courseCode, Exam exam);
+    void addCourseManagementFormToCourse(CourseManagementForm cmf, int id);
 }

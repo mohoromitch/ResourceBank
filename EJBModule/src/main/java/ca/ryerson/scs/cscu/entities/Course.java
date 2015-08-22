@@ -30,6 +30,8 @@ public class Course implements Serializable {
     private String description; //ie. What's on the Ryerson course calendar
     @OneToMany(cascade = CascadeType.REMOVE)
     private Collection<Exam> exams;
+    @OneToMany(cascade = CascadeType.REMOVE)
+    private Collection<CourseManagementForm> courseManagementForms;
 
     public Course() {
         this.exams = new ArrayList<>();
@@ -49,19 +51,31 @@ public class Course implements Serializable {
         return name;
     }
 
-    public void addExam(Exam e) {
-        this.getExams().add(e);
-    }
-
     public int getId() {
         return id;
     }
 
     public Collection<Exam> getExams() {
-        return exams;
+        return this.exams;
+    }
+
+    public void addExam(Exam e) {
+        this.getExams().add(e);
     }
 
     public void removeExam(Exam exam) {
         this.exams.remove(exam);
+    }
+
+    public Collection<CourseManagementForm> getCourseManagementForms() {
+        return this.courseManagementForms;
+    }
+
+    public void addCourseManagementForm(CourseManagementForm cmf) {
+        courseManagementForms.add(cmf);
+    }
+
+    public  void removeCourseManagementForm(CourseManagementForm cmf) {
+        courseManagementForms.remove(cmf);
     }
 }

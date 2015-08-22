@@ -2,6 +2,7 @@ package ca.ryerson.scs.cscu.ejb.database.Courses;
 
 import ca.ryerson.scs.cscu.ejb.database.Programs.ProgramBean;
 import ca.ryerson.scs.cscu.entities.Course;
+import ca.ryerson.scs.cscu.entities.CourseManagementForm;
 import ca.ryerson.scs.cscu.entities.Exam;
 
 import javax.annotation.PostConstruct;
@@ -83,5 +84,10 @@ public class CourseBeanImp implements CourseBean {
     @Override
     public void addExamToCourse(String courseCode, Exam exam) {
         this.getCourseByCourseCode(courseCode).addExam(exam);
+    }
+
+    @Override
+    public void addCourseManagementFormToCourse(CourseManagementForm cmf, int id) {
+        this.getCourseById(id).addCourseManagementForm(cmf);
     }
 }
