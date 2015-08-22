@@ -1,62 +1,38 @@
 package ca.ryerson.scs.cscu.admin;
 
+import ca.ryerson.scs.cscu.abstractClasses.TimeDocumentHandler;
 import ca.ryerson.scs.cscu.ejb.database.Courses.CourseBean;
 import ca.ryerson.scs.cscu.ejb.database.Courses.Exams.ExamBean;
-import ca.ryerson.scs.cscu.entities.Course;
 import ca.ryerson.scs.cscu.entities.Exam;
 
-import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.ExternalContext;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import javax.servlet.http.Part;
 import java.io.*;
-import java.nio.file.Files;
-import java.util.Calendar;
 
 /**
  * Created by mitchellmohorovich on 15-07-24.
  */
 @Named("adminExamBean")
 @RequestScoped
-public class AdminExamBean {
+public class AdminExamBean extends TimeDocumentHandler {
     @EJB
     ExamBean examBean;
 
     @EJB
     CourseBean courseBean;
 
-    private short year;
-    private Exam.Semester semester; //Winter, Spring, Summer, Fall :)
     private Exam.Type type; //Exam, Test, Practice Test, Practice Exam
-    private Part uploadedFile;
-    private String contentType;
     private Exam exam;
+    @ManagedProperty("#{param.courseCode}")
+    private String courseCode;
 
     private final int MINIMUM_YEAR = 1995;
 
-    public void setYear(short year) {
-        this.year = year;
-    }
-
-    public void setSemester(Exam.Semester semester) {
-        this.semester = semester;
-    }
-
     public void setType(Exam.Type type) {
         this.type = type;
-    }
-
-    public short getYear() {
-        return year;
-    }
-
-    public Exam.Semester getSemester() {
-        return semester;
     }
 
     public Exam.Type getType() {
@@ -75,52 +51,12 @@ public class AdminExamBean {
         FacesContext.getCurrentInstance().getExternalContext().redirect("/courses/" + uriCourseCode);
     }
 
-    private byte[] toByteArray(Part file) {
-        InputStream input;
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
-        try {
-            input = file.getInputStream();
-            byte[] buffer = new byte[1024];
-            for (int length = 0; (length = input.read(buffer)) > 0; output.write(buffer, 0, length)) ;
-        } catch (IOException e) {
-            return null;
-        }
-        return output.toByteArray();
-    }
-
-    public void setUploadedFile(Part uploadedFile) {
-        this.contentType = uploadedFile.getContentType();
-        this.uploadedFile = uploadedFile;
-    }
-
-    public Part getUploadedFile() {
-        return uploadedFile;
-    }
-
     public Exam getExamById(int id) {
         return examBean.getExamById(id);
     }
 
     public Exam.Type[] getTypes() {
         return Exam.Type.values();
-    }
-
-    public Exam.Semester[] getSemesters() {
-        return Exam.Semester.values();
-    }
-
-    public int getCurrentYear() {
-        return Calendar.getInstance().get(Calendar.YEAR);
-    }
-
-    public int[] getYearRange() {
-        int size = this.getCurrentYear() - this.MINIMUM_YEAR + 1;
-        int returnArray[] = new int[size];
-        returnArray[0] = this.MINIMUM_YEAR;
-        for (int i = 1; i < size; i++) {
-            returnArray[i] = returnArray[i-1]+1;
-        }
-        return returnArray;
     }
 
     public String setEditable(Exam e) {
@@ -160,5 +96,13 @@ public class AdminExamBean {
     public String deleteExamByIdAndRedirect(int id) throws IOException {
         this.deleteExamById(id);
         return String.valueOf(id);
+    }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 }

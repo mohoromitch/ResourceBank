@@ -1,5 +1,7 @@
 package ca.ryerson.scs.cscu.entities;
 
+import ca.ryerson.scs.cscu.enums.Semester;
+
 import javax.persistence.*;
 import java.io.File;
 import java.io.Serializable;
@@ -15,16 +17,9 @@ import java.io.Serializable;
                 query = "select e from Exam e"
         )
 })
-public class Exam implements Serializable {
-    @Id
-    @GeneratedValue
-    private int id;
-    private short year;
-    @Enumerated(EnumType.ORDINAL) //
-    private Semester semester; //Winter, Spring, Summer, Fall :)
+public class Exam extends TimeDocument implements Serializable {
     @Enumerated(EnumType.STRING)
     private Type type; //Exam, Test, Practice Test, Practice Exam
-    private byte[] file;
     @ManyToOne
     private Course ownerCourse;
     private String contentType;
@@ -49,22 +44,6 @@ public class Exam implements Serializable {
         }
     }
 
-    public enum Semester {
-        fall("Fall"),
-        winter("Winter"),
-        spring("Spring"),
-        summer("Summer"),;
-
-        private final String label;
-
-        Semester(String label) {
-            this.label = label;
-        }
-
-        public String getLabel() {
-            return label;
-        }
-    }
 
     public Exam() {
         editable = false;
@@ -72,35 +51,19 @@ public class Exam implements Serializable {
 
     public Exam(short year, Semester semester, Type type) {
         this();
-        this.year = year;
-        this.semester = semester;
+        this.setYear(year);
+        this.setSemester(semester);
         this.type = type;
     }
 
     public Exam(short year, Semester semester, Type type, byte[] file) {
         this(year, semester, type);
-        this.file = file;
+        this.setFile(file);
     }
 
     public Exam(short year, Semester semester, Type type, byte[] file, String contentType) {
         this(year, semester, type, file);
         this.contentType = contentType;
-    }
-
-    public short getYear() {
-        return year;
-    }
-
-    public void setYear(short year) {
-        this.year = year;
-    }
-
-    public Semester getSemester() {
-        return semester;
-    }
-
-    public void setSemester(Semester semester) {
-        this.semester = semester;
     }
 
     public Type getType() {
@@ -117,18 +80,6 @@ public class Exam implements Serializable {
 
     public void setOwnerCourse(Course ownerCourse) {
         this.ownerCourse = ownerCourse;
-    }
-
-    public byte[] getFile() {
-        return file;
-    }
-
-    public void setFile(byte[] file) {
-        this.file = file;
-    }
-
-    public int getId() {
-        return this.id;
     }
 
     public boolean isEditable() {
