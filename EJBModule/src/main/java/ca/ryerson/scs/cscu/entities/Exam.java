@@ -22,7 +22,6 @@ public class Exam extends TimeDocument implements Serializable {
     private Type type; //Exam, Test, Practice Test, Practice Exam
     @ManyToOne
     private Course ownerCourse;
-    private String contentType;
 
     @Transient
     private boolean editable; //Used for editing the entities in the table rows.
@@ -63,7 +62,7 @@ public class Exam extends TimeDocument implements Serializable {
 
     public Exam(short year, Semester semester, Type type, byte[] file, String contentType) {
         this(year, semester, type, file);
-        this.contentType = contentType;
+        this.setContentType(contentType);
     }
 
     public Type getType() {
@@ -88,13 +87,5 @@ public class Exam extends TimeDocument implements Serializable {
 
     public void setEditable(boolean editable) {
         this.editable = editable;
-    }
-
-    public void setContentType(String contentType) {
-        this.contentType = contentType;
-    }
-
-    public String getContentType() {
-        return contentType;
     }
 }

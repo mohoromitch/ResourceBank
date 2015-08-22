@@ -31,6 +31,14 @@
         <url-pattern>/downloads/exams/exam</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>CMFDownloadServlet</servlet-name>
+        <servlet-class>ca.ryerson.scs.cscu.downloads.cmfs.CourseManagementFormDownloadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CMFDownloadServlet</servlet-name>
+        <url-pattern>/downloads/cmfs/cmf</url-pattern>
+    </servlet-mapping>
 
 
 

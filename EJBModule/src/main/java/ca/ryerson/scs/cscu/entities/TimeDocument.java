@@ -16,6 +16,7 @@ public class TimeDocument {
     protected Semester semester; //Winter, Spring, Summer, Fall :)
     protected short year;
     protected byte[] file;
+    protected String contentType;
 
     public Semester getSemester() {
         return semester;
@@ -47,5 +48,13 @@ public class TimeDocument {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
     }
 }

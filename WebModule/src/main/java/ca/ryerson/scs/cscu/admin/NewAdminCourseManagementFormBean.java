@@ -27,7 +27,7 @@ public class NewAdminCourseManagementFormBean extends TimeDocumentHandler {
     CourseManagementFormBean courseManagementFormBean;
 
     /**
-     * The courseCode paramter that is sent as a GET parameter.
+     * The courseCode parameter that is sent as a GET parameter.
      * It is populated in the cmfs/add.xhtml viewParam tag.
      */
     private String courseCode;
@@ -39,6 +39,8 @@ public class NewAdminCourseManagementFormBean extends TimeDocumentHandler {
                 this.getSemester(),
                 this.getProfessor(),
                 this.courseBean.getCourseByCourseCode(this.getCourseCode()));
+        cmf.setFile(this.toByteArray(this.getUploadedFile()));
+        cmf.setContentType(this.getUploadedFile().getContentType());
         courseManagementFormBean.addCourseManagementForm(cmf);
         courseBean.addCourseManagementFormToCourse(cmf, courseBean.getCourseByCourseCode(this.getCourseCode()).getId());
         FacesContext.getCurrentInstance().getExternalContext().redirect("/courses/" + courseCode);

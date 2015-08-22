@@ -32,7 +32,7 @@ public class ExamDownloadServlet extends HttpServlet {
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response) throws IOException {
         //TODO: Redirect if the passed id is invalid (NaN)
-        int examID = Integer.parseInt(request.getParameter("examID"));
+        int examID = Integer.parseInt(request.getParameter("id"));
 
         Exam exam = examBean.getExamById(examID);
         //TODO: Redirect if the passed id doesn't correspond to a proper row.

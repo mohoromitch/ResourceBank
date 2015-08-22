@@ -28,7 +28,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">Download</f:facet>
-                            (Download link)
+                            <a href="/downloads/cmfs/cmf?id=#{cmf.id}"><i class="glyphicon glyphicon-download"/></a>
                         </h:column>
                     </h:dataTable>
                 </div>
@@ -60,7 +60,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">Download</f:facet>
-                            <a href="/downloads/exams/exam?examID=#{ce.id}"><i class="glyphicon glyphicon-download"/> </a>
+                            <a href="/downloads/exams/exam?id=#{ce.id}"><i class="glyphicon glyphicon-download"/> </a>
                         </h:column>
                         <h:column rendered="#{securityBean.userAdmin}">
                             <f:facet name="header">Edit</f:facet>
