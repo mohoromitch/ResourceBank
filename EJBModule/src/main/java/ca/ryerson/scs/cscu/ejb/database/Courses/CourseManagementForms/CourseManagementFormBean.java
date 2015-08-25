@@ -12,7 +12,6 @@ import java.util.List;
 public interface CourseManagementFormBean {
     CourseManagementForm getCourseManagementFormById(int id);
     void addCourseManagementForm(CourseManagementForm cmf);
-    void deleteCourseManagementForm(CourseManagementForm cmf);
     void deleteCourseManagementForm(int id);
     CourseManagementForm setYear(int id, short year);
     CourseManagementForm setSemester(int id, Semester semester);

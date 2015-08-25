@@ -20,7 +20,7 @@
                     <h:dataTable styleClass="table" value="#{courseDisplayBean.findCourseByCourseCode(uriCourseCode).courseManagementForms}" var="cmf">
                         <h:column>
                             <f:facet name="header">Semester</f:facet>
-                            #{cmf.semester}
+                            #{cmf.semester.label}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Year</f:facet>
@@ -29,6 +29,10 @@
                         <h:column>
                             <f:facet name="header">Download</f:facet>
                             <a href="/downloads/cmfs/cmf?id=#{cmf.id}"><i class="glyphicon glyphicon-download"/></a>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Edit</f:facet>
+                            <a href="/admin/cmfs/cmf.xhtml?id=#{cmf.id}"><i class="glyphicon glyphicon-pencil"/></a>
                         </h:column>
                     </h:dataTable>
                 </div>

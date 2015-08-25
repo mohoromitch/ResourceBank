@@ -56,6 +56,10 @@ public class Program implements Serializable {
         return name;
     }
 
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
+
     public String getShortName() {
         return shortName;
     }

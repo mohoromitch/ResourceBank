@@ -6,36 +6,25 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:metadata>
-    <f:event type="preRenderView" listener="#{adminExamBean.setExam(adminExamBean.getExamById(uriExamId))}"/>
+    <f:viewParam name="id" value="#{editCMFBean.id}"/>
+    <f:event type="preRenderView" listener="#{editCMFBean.initialize}"/>
 </f:metadata>
 <h:body>
     <ui:composition template="/WEB-INF/templates/template.xhtml">
         <ui:define name="content">
             <div class="page-header">
-                <h1>Exam
-                    <small>Administration</small>
+                <h1>Course Management Form <small>Administration</small>
                 </h1>
-                <p>Exam ##{uriExamId} of #{adminExamBean.exam.ownerCourse.courseCode}</p>
+                <p>Exam ##{editCMFBean.cmf.id} of #{editCMFBean.cmf.ownerCourse.courseCode}</p>
             </div>
             <h:form id="exam-edit-form" styleClass="form-horizontal">
-                <div class="form-group form-group-sm">
-                    <h:outputLabel for="type-select" styleClass="col-md-2 control-label" value="Test Type:"/>
-
-                    <div class="col-sm-10">
-                        <h:selectOneMenu id="type-select" styleClass="form-control" value="#{adminExamBean.exam.type}">
-                            <f:selectItems value="#{adminExamBean.types}" var="type" itemValue="#{type}"
-                                           itemLabel="#{type.label}"/>
-                        </h:selectOneMenu>
-
-                    </div>
-                </div>
                 <div class="form-group form-group-sm">
                     <h:outputLabel for="year-select" styleClass="col-md-2 control-label" value="Year:"/>
 
                     <div class="col-md-10">
                         <h:selectOneMenu id="year-select" styleClass="form-control"
-                                         value="#{adminExamBean.exam.year}">
-                            <f:selectItems value="#{adminExamBean.yearRange}" var="year" itemValue="#{year}"/>
+                                         value="#{editCMFBean.cmf.year}">
+                            <f:selectItems value="#{editCMFBean.yearRange}" var="year" itemValue="#{year}"/>
                         </h:selectOneMenu>
                     </div>
                 </div>
@@ -44,15 +33,15 @@
 
                     <div class="col-md-10">
                         <h:selectOneMenu id="semester-select" styleClass="form-control"
-                                         value="#{adminExamBean.exam.semester}">
-                            <f:selectItems value="#{adminExamBean.semesters}" var="semester" itemValue="#{semester}" itemLabel="#{semester.label}"/>
+                                         value="#{editCMFBean.cmf.semester}">
+                            <f:selectItems value="#{editCMFBean.semesters}" var="semester" itemValue="#{semester}" itemLabel="#{semester.label}"/>
                         </h:selectOneMenu>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-10 col-md-offset-2">
-                        <h:commandButton type="submit" styleClass="btn btn-success" value="Submit Changes" action="#{adminExamBean.editExam(uriExamId)}"/>
-                        <h:commandButton type="submit" styleClass="btn btn-danger pull-right" value="Delete Exam" action="#{adminExamBean.deleteExamById(uriExamId)}"/>
+                        <h:commandButton type="submit" styleClass="btn btn-success" value="Save Changes" action="#{editCMFBean.editCMF(editCMFBean.id)}"/>
+                        <h:commandButton type="submit" styleClass="btn btn-danger pull-right" value="Delete Exam" action="#{editCMFBean.deleteCourseManagementFormById(editCMFBean.id)}"/>
                     </div>
                 </div>
             </h:form>

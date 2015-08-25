@@ -39,13 +39,11 @@ public class CourseManagementFormBeanImp implements CourseManagementFormBean {
     }
 
     @Override
-    public void deleteCourseManagementForm(CourseManagementForm cmf) {
-        //TODO
-    }
-
-    @Override
     public void deleteCourseManagementForm(int id) {
-        //TODO
+        CourseManagementForm cmf = em.find(CourseManagementForm.class, id);
+        cmf.getOwnerCourse().removeCourseManagementForm(cmf);
+        cmf.setOwnerCourse(null);
+        em.remove(cmf);
     }
 
     @Override

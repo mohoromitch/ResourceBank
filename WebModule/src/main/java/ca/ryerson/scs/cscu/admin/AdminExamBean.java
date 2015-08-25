@@ -89,13 +89,9 @@ public class AdminExamBean extends TimeDocumentHandler {
         this.exam = exam;
     }
 
-    public void deleteExamById(int id) {
+    public void deleteExamById(int id) throws IOException {
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/courses/" + examBean.getExamById(id).getOwnerCourse().getCourseCode());
         examBean.deleteExam(id);
-    }
-
-    public String deleteExamByIdAndRedirect(int id) throws IOException {
-        this.deleteExamById(id);
-        return String.valueOf(id);
     }
 
     public String getCourseCode() {
