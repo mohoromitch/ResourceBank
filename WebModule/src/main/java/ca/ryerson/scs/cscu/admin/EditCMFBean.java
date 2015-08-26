@@ -6,8 +6,11 @@ import ca.ryerson.scs.cscu.entities.CourseManagementForm;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -27,9 +30,13 @@ public class EditCMFBean extends TimeDocumentHandler {
      * Given that the id is valid and returns a cmf, initializes the cmf.
      * Otherwise redirects.
      */
-    public void initialize() {
-            this.setCmf(courseManagementFormBean.getCourseManagementFormById(this.getId()));
-        //TODO: redirect
+    public void initialize() throws IOException {
+        this.setCmf(courseManagementFormBean.getCourseManagementFormById(this.getId()));
+        if(this.cmf == null) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.getExternalContext().responseSendError(404, "That course management form does not exist.");
+            context.responseComplete();
+        }
     }
 
     public void editCMF(int id) throws IOException {
@@ -65,4 +72,13 @@ public class EditCMFBean extends TimeDocumentHandler {
     public void setId(int id) {
         this.id = id;
     }
+
+    public void validate(FacesContext context, UIComponent uiComponent, Object object) {
+        if((Integer) object <= 0) {
+            context.getExternalContext().setResponseStatus(404);
+        } else if(this.getCourseManagementFormById(this.getId()) == null) {
+            context.getExternalContext().setResponseStatus(404);
+        }
+    }
+
 }
