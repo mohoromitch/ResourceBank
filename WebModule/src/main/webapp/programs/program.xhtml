@@ -19,11 +19,11 @@
             <h:outputStylesheet library="css" name="table-link.min.css" target="head"/>
 
             <div class="page-header">
-                <h1>#{adminProgramBean.getProgramByShortName(uriProgramShortName).name}
+                <h1>#{programDisplayBean.getProgramByShortName(uriProgramShortName).name}
                     <small>Related Courses</small>
                 </h1>
             </div>
-            <h:dataTable styleClass="table table-hover" value="#{adminProgramBean.getProgramByShortName(uriProgramShortName).courses}" var="c" rowClasses="clickable-row">
+            <h:dataTable styleClass="table table-hover" value="#{programDisplayBean.getProgramByShortName(uriProgramShortName).courses}" var="c" rowClasses="clickable-row">
                 <f:passThroughAttribute name="data-href" value="/courses/#{c.courseCode}?refCourse=#{uriProgramShortName}"/>
                 <h:column>
                     <f:facet name="header">Course Code</f:facet>
