@@ -31,16 +31,13 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <h:outputLink styleClass="btn btn-default" value="/login.xhtml" rendered="#{!securityBean.isLoggedIn()}">Login</h:outputLink>
+                        <h:outputLink value="/login.xhtml" rendered="#{!securityBean.loggedIn}">Login</h:outputLink>
+                        <h:outputLink value="/logout.xhtml" rendered="#{securityBean.loggedIn}">Logout</h:outputLink>
                     </li>
                 </ul>
-                <h:form styleClass="navbar-form navbar-right" role="logout" rendered="#{securityBean.isLoggedIn()}">
-                    <div class="form-group">
-                        <h:commandButton styleClass="btn btn-default" value="Logout" action="#{securityBean.logout()}"/>
-                    </div>
-                </h:form>
             </div>
         </div>
     </div>
 </ui:composition>
 </html>
+
