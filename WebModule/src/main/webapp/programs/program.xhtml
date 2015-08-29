@@ -9,7 +9,7 @@
 <f:metadata>
     <f:viewAction action="#{programDisplayBean.validateURIShortName(uriProgramShortName)}"/>
     <f:viewAction action="#{breadcrumbBean.addBreadcrumb('Programs', '/programs/')}"/>
-    <f:viewAction action="#{breadcrumbBean.addBreadcrumb(programDisplayBean.program.name, '#', false)}"/>
+    <f:viewAction action="#{breadcrumbBean.addActiveBreadcrumb(programDisplayBean.program.name)}"/>
 </f:metadata>
 
 <h:body>
