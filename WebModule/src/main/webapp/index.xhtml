@@ -6,11 +6,36 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:body>
     <ui:composition template="/WEB-INF/templates/template.xhtml">
+
+        <ui:define name="pre-container">
+            <h:outputStylesheet library="css" name="landing.min.css" target="head"/>
+            <h:outputStylesheet library="css" name="table-link.min.css" target="head"/>
+            <div class="wide">
+                <div class="logo h1">CSCU<br /> Resource Bank</div>
+            </div>
+        </ui:define>
+
         <ui:define name="content">
-            <div class="jumbotron" style="width: 100%">
-                <div class="container">
-                    <h1>Welcome</h1>
-                    <p>To the resource bank!</p>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            <i class="glyphicon glyphicon-alert"/> Hardhats required
+                        </div>
+                        <div class="panel-body">
+                            <p>This site is still in beta. From time to time the application will cease to function. In case that ever happens, remember the old Exam Bank is still online at <a href="http://exams.cscu.scs.ryerson.ca">exams.cscu.scs.ryerson.ca</a>.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a class="btn-block" href="/programs/CS">Enter</a>
+                        </div>
+                        <div class="panel-body">
+                            <p>While this site may not be 100% bug free, nor does it have as many exams (yet), it does have infinitely more course management forms. So go ahead and <a href="/programs/CS">check it out</a>.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </ui:define>
