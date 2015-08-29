@@ -10,6 +10,7 @@ import ca.ryerson.scs.cscu.enums.Semester;
 import javax.annotation.PostConstruct;
 import javax.ejb.*;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
@@ -84,7 +85,13 @@ public class ProgramBeanImpl implements ProgramBean {
     public Program getProgramByShortName(String shortName) {
         Query query = em.createNamedQuery("getProgramByShortName");
         query.setParameter("shortName", shortName);
-        return (Program) query.getSingleResult();
+        Program returnProgram = null;
+        try {
+            returnProgram = (Program) query.getSingleResult();
+        } catch (NoResultException e) {
+        } finally {
+            return returnProgram;
+        }
     }
 
     @Override

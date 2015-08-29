@@ -4,15 +4,24 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:metadata>
+    <f:viewAction action="#{breadcrumbBean.addActiveBreadcrumb('Courses')}"/>
+</f:metadata>
 <h:body>
     <ui:composition template="/WEB-INF/templates/template.xhtml">
         <ui:define name="content">
+            <h:outputScript library="js" name="table-link.js" target="head"/>
+            <h:outputStylesheet library="css" name="table-link.min.css" target="head"/>
+
             <h1>Courses <small>Master List</small></h1>
             <p>All courses available on the site are listed here, not organized by program relevance.</p>
-            <h:dataTable styleClass="table" value="#{adminCourseBean.masterList}" var="c">
+            <h:dataTable styleClass="table table-hover" value="#{adminCourseBean.allEntities}" var="c" rowClasses="clickable-row">
+                <f:passThroughAttribute name="data-href" value="/courses/#{c.courseCode}"/>
                 <h:column>
                     <f:facet name="header">Name</f:facet>
-                    #{c.courseCode}
+                    <a href="/courses/#{c.courseCode}">
+                        #{c.courseCode}
+                    </a>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Faculty</f:facet>

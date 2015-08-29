@@ -1,16 +1,16 @@
 package ca.ryerson.scs.cscu.display;
 
 import ca.ryerson.scs.cscu.ejb.database.Courses.CourseBean;
+import ca.ryerson.scs.cscu.ejb.database.Programs.ProgramBean;
 import ca.ryerson.scs.cscu.entities.Course;
+import ca.ryerson.scs.cscu.entities.Program;
 import ca.ryerson.scs.cscu.interfaces.DisplayBean;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.ManagedProperty;
 import javax.inject.Named;
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +22,13 @@ import java.util.List;
 public class CourseDisplayBean implements DisplayBean<Course> {
     @EJB
     CourseBean courseBean;
+
+    @EJB
+    ProgramBean programBean;
+
+    String refCourse;
+
+    Course referralCourse;
 
     @Override
     public List<Course> getAllEntities() {
@@ -35,5 +42,35 @@ public class CourseDisplayBean implements DisplayBean<Course> {
 
     public Course findCourseByCourseCode(String courseCode) {
         return courseBean.getCourseByCourseCode(courseCode);
+    }
+
+    public String getRefCourse() {
+        return refCourse;
+    }
+
+    public void setRefCourse(String refCourse) {
+        this.refCourse = refCourse;
+    }
+
+    public void setReferralCourse(Course referralCourse) {
+        this.referralCourse = referralCourse;
+    }
+
+    public Course getReferralCourse() {
+        return referralCourse;
+    }
+
+    public List<Breadcrumb> generateBreadcrumbs(String uriCourseCode) {
+        List<Breadcrumb> breadcrumbs = new ArrayList<>();
+        Program refProgram = this.programBean.getProgramByShortName(this.refCourse);
+        if(refProgram == null) {
+            breadcrumbs.add(new Breadcrumb("Courses", "/courses/"));
+        } else {
+            breadcrumbs.add(new Breadcrumb("Programs", "/programs/"));
+            breadcrumbs.add(new Breadcrumb(refProgram.getName(), "/programs/" + refProgram.getShortName()));
+        }
+        breadcrumbs.add(new Breadcrumb(uriCourseCode, null, true));
+
+        return breadcrumbs;
     }
 }

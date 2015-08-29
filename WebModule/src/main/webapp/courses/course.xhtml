@@ -5,9 +5,17 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:metadata>
+    <f:viewParam name="refCourse" value="#{courseDisplayBean.refCourse}"/>
+    <f:viewAction action="#{breadcrumbBean.addBreadcrumbs(courseDisplayBean.generateBreadcrumbs(uriCourseCode))}"/>
+
+</f:metadata>
 <h:body>
     <ui:composition template="/WEB-INF/templates/template.xhtml">
         <ui:define name="content">
+            <h:outputScript library="js" name="table-link.js" target="head"/>
+            <h:outputStylesheet library="css" name="table-link.min.css" target="head"/>
+
             <div class="page-header">
                 <h1>#{uriCourseCode}:
                     <small>#{courseDisplayBean.findCourseByCourseCode(uriCourseCode).name}</small>
@@ -17,7 +25,8 @@
             </h2>
             <div class="row">
                 <div class="col-lg-12">
-                    <h:dataTable styleClass="table" value="#{courseDisplayBean.findCourseByCourseCode(uriCourseCode).courseManagementForms}" var="cmf">
+                    <h:dataTable styleClass="table table-hover" value="#{courseDisplayBean.findCourseByCourseCode(uriCourseCode).courseManagementForms}" var="cmf" rowClasses="clickable-row-external">
+                        <f:passThroughAttribute name="data-href" value="/downloads/cmfs/cmf?id=#{cmf.id}"/>
                         <h:column>
                             <f:facet name="header">Semester</f:facet>
                             #{cmf.semester.label}
@@ -30,18 +39,18 @@
                             <f:facet name="header">Download</f:facet>
                             <a href="/downloads/cmfs/cmf?id=#{cmf.id}"><i class="glyphicon glyphicon-download"/></a>
                         </h:column>
-                        <h:column>
+                        <h:column rendered="#{securityBean.userAdmin}">
                             <f:facet name="header">Edit</f:facet>
                             <a href="/admin/cmfs/cmf.xhtml?id=#{cmf.id}"><i class="glyphicon glyphicon-pencil"/></a>
                         </h:column>
                     </h:dataTable>
                 </div>
             </div>
-            <div class="row mrgn-bttm-">
+            <h:panelGroup layout="block" styleClass="row" rendered="#{securityBean.userAdmin}">
                 <div class="col-lg-12">
                     <a href="/admin/cmfs/add.xhtml?courseCode=#{uriCourseCode}" class="btn btn-success btn-sm pull-left">Add New CMF</a>
                 </div>
-            </div>
+            </h:panelGroup>
             <div class="row">
                 <div class="col-lg-12">
                     <h2>Test List:</h2>
@@ -49,36 +58,37 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <h:dataTable styleClass="table" value="#{courseDisplayBean.findCourseByCourseCode(uriCourseCode).exams}" var="ce">
-                        <h:column>
-                            <f:facet name="header">Type</f:facet>
-                            #{ce.type.label}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Semester</f:facet>
-                            #{ce.semester.label}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Year</f:facet>
-                            #{ce.year}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Download</f:facet>
-                            <a href="/downloads/exams/exam?id=#{ce.id}"><i class="glyphicon glyphicon-download"/> </a>
-                        </h:column>
-                        <h:column rendered="#{securityBean.userAdmin}">
-                            <f:facet name="header">Edit</f:facet>
-                            <a href="/admin/exams/modify/#{ce.id}"><i class="glyphicon glyphicon-pencil"/></a>
-                        </h:column>
+                    <h:dataTable styleClass="table table-hover" value="#{courseDisplayBean.findCourseByCourseCode(uriCourseCode).exams}" var="ce" rowClasses="clickable-row-external">
+                        <f:passThroughAttribute name="data-href" value="/downloads/exams/exam?id=#{ce.id}"/>
+                            <h:column>
+                                <f:facet name="header">Type</f:facet>
+                                #{ce.type.label}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Semester</f:facet>
+                                #{ce.semester.label}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Year</f:facet>
+                                #{ce.year}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Download</f:facet>
+                                <a href="/downloads/exams/exam?id=#{ce.id}"><i class="glyphicon glyphicon-download"/> </a>
+                            </h:column>
+                            <h:column rendered="#{securityBean.userAdmin}">
+                                <f:facet name="header">Edit</f:facet>
+                                <a href="/admin/exams/modify/#{ce.id}"><i class="glyphicon glyphicon-pencil"/></a>
+                            </h:column>
                     </h:dataTable>
                 </div>
 
             </div>
-            <div class="row">
+                <h:panelGroup layout="block" styleClass="row" rendered="#{securityBean.userAdmin}">
                 <div class="col-lg-12">
                     <a href="/admin/exams/add.xhtml?courseCode=#{uriCourseCode}" class="btn btn-success btn-sm pull-left">Add New Exam</a>
                 </div>
-            </div>
+            </h:panelGroup>
         </ui:define>
     </ui:composition>
 </h:body>

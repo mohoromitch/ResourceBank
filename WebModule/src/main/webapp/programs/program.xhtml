@@ -5,18 +5,29 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:metadata>
+    <f:viewAction action="#{programDisplayBean.validateURIShortName(uriProgramShortName)}"/>
+    <f:viewAction action="#{breadcrumbBean.addBreadcrumb('Programs', '/programs/')}"/>
+    <f:viewAction action="#{breadcrumbBean.addBreadcrumb(programDisplayBean.program.name, '#', false)}"/>
+</f:metadata>
+
 <h:body>
     <ui:composition template="/WEB-INF/templates/template.xhtml">
         <ui:define name="content">
+            <h:outputScript library="js" name="table-link.js" target="head"/>
+            <h:outputStylesheet library="css" name="table-link.min.css" target="head"/>
+
             <div class="page-header">
                 <h1>#{adminProgramBean.getProgramByShortName(uriProgramShortName).name}
                     <small>Related Courses</small>
                 </h1>
             </div>
-            <h:dataTable styleClass="table" value="#{adminProgramBean.getProgramByShortName(uriProgramShortName).courses}" var="c">
+            <h:dataTable styleClass="table table-hover" value="#{adminProgramBean.getProgramByShortName(uriProgramShortName).courses}" var="c" rowClasses="clickable-row">
+                <f:passThroughAttribute name="data-href" value="/courses/#{c.courseCode}?refCourse=#{uriProgramShortName}"/>
                 <h:column>
                     <f:facet name="header">Course Code</f:facet>
-                    <h:outputLink value="/courses/#{c.courseCode}">#{c.courseCode}</h:outputLink>
+                    <h:outputLink value="/courses/#{c.courseCode}?refCourse=#{uriProgramShortName}">#{c.courseCode}</h:outputLink>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Course Name</f:facet>
@@ -24,30 +35,28 @@
                 </h:column>
             </h:dataTable>
 
-            <div class="row">
+            <h:panelGroup layout="block" styleClass="row" rendered="#{securityBean.userAdmin}">
                 <div class="col-lg-12">
                     <h2 class="h3">Add Course to Program</h2>
                 </div>
                 <div class="col-lg-12">
                     <h:form styleClass="form-horizontal">
                         <div class="form-group form-group-sm">
-                            <h:outputLabel value="Choose Course:" styleClass="col-md-3 control-label" for="course-select"/>
+                            <h:outputLabel value="Choose Course:" styleClass="control-label invisible" for="course-select"/>
 
-                            <div class="col-md-9">
+                            <div class="col-md-3">
                                 <h:selectOneMenu id="course-select" styleClass="form-control" value="#{adminProgramBean.courseId}" required="true">
                                     <f:selectItem itemLabel="Select Course" noSelectionOption="true"/>
                                     <f:selectItems value="#{adminCourseBean.getAllEntitiesDifference(adminProgramBean.getProgramByShortName(uriProgramShortName).courses).values()}" var="course" itemValue="#{course.id}" itemLabel="#{course.courseCode}: #{course.name}"/>
                                 </h:selectOneMenu>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-9 col-md-offset-3">
-                                <h:commandButton type="submit" value="Add Course" styleClass="btn btn-success" action="#{adminProgramBean.addCourseToProgramByShortCode(adminProgramBean.courseId, uriProgramShortName)}"/>
+                            <div class="col-md-3">
+                                <h:commandButton type="submit" value="Add Course" styleClass="btn btn-success btn-sm" action="#{adminProgramBean.addCourseToProgramByShortCode(adminProgramBean.courseId, uriProgramShortName)}"/>
                             </div>
                         </div>
                     </h:form>
                 </div>
-            </div>
+            </h:panelGroup>
         </ui:define>
     </ui:composition>
 </h:body>
