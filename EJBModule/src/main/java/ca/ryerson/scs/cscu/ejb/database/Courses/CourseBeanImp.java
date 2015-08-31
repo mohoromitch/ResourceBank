@@ -58,10 +58,12 @@ public class CourseBeanImp implements CourseBean {
         if(courseCode == null) return null;
         Query query = em.createNamedQuery("getCourseByCourseCode");
         query.setParameter("courseCode", courseCode);
-        Course returnCourse = (Course) query.getSingleResult();
-        if(returnCourse == null) {
-            return new Course("unknown", "n/a");
-        } else {
+        Course returnCourse = null;
+        try {
+            returnCourse = (Course) query.getSingleResult();
+        } catch (Exception e) {
+            returnCourse = new Course("unknown", "n/a");
+        } finally {
             return returnCourse;
         }
     }

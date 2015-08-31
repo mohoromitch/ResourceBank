@@ -88,10 +88,8 @@ public class ProgramBeanImpl implements ProgramBean {
         Program returnProgram = null;
         try {
             returnProgram = (Program) query.getSingleResult();
-        } catch (NoResultException e) {
-        } finally {
-            return returnProgram;
-        }
+        } catch (Exception e) {}
+        return returnProgram;
     }
 
     @Override

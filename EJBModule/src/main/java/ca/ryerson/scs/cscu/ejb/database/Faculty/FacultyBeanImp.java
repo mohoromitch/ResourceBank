@@ -58,11 +58,12 @@ public class FacultyBeanImp implements FacultyBean {
     public Faculty findFacultyByName(String name) {
         Query query = em.createNamedQuery("getFacultyByName");
         query.setParameter("name", name);
-        Faculty returnFaculty = (Faculty) query.getSingleResult();
-        if(returnFaculty == null) {
-            return new Faculty("unknown");
-        } else {
-            return returnFaculty;
+        Faculty returnFaculty;
+        try {
+            returnFaculty = (Faculty) query.getSingleResult();
+        } catch (Exception e) {
+            returnFaculty = new Faculty("unknown");
         }
+        return returnFaculty;
     }
 }
