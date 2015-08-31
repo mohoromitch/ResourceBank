@@ -25,7 +25,7 @@
             </h2>
             <div class="row">
                 <div class="col-lg-12">
-                    <h:dataTable styleClass="table table-hover" value="#{courseDisplayBean.findCourseByCourseCode(uriCourseCode).courseManagementForms}" var="cmf" rowClasses="clickable-row-external">
+                    <h:dataTable styleClass="table table-hover" value="#{courseDisplayBean.findCourseByCourseCode(uriCourseCode).courseManagementForms}" var="cmf" rowClasses="clickable-row">
                         <f:passThroughAttribute name="data-href" value="/downloads/cmfs/cmf?id=#{cmf.id}"/>
                         <h:column>
                             <f:facet name="header">Semester</f:facet>
@@ -58,7 +58,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <h:dataTable styleClass="table table-hover" value="#{courseDisplayBean.findCourseByCourseCode(uriCourseCode).exams}" var="ce" rowClasses="clickable-row-external">
+                    <h:dataTable styleClass="table table-hover" value="#{courseDisplayBean.findCourseByCourseCode(uriCourseCode).exams}" var="ce" rowClasses="clickable-row">
                         <f:passThroughAttribute name="data-href" value="/downloads/exams/exam?id=#{ce.id}"/>
                             <h:column>
                                 <f:facet name="header">Type</f:facet>

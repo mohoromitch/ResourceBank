@@ -11,6 +11,10 @@
 <h:body>
     <ui:composition template="/WEB-INF/templates/template.xhtml">
         <ui:define name="content">
+
+            <h:outputScript library="js" name="table-link.js" target="head"/>
+            <h:outputStylesheet library="css" name="table-link.min.css" target="head"/>
+
             <div class="page-header">
                 <h1>Courses <small>Administration</small></h1>
             </div>
@@ -20,10 +24,14 @@
             <p>If a course is relevant to a program, then it it added to the program, rather than the program added to the course.</p>
 
             <h2>Course Master List:</h2>
-            <h:dataTable styleClass="table" value="#{adminCourseBean.getAllEntities()}" var="c">
+            <h:dataTable styleClass="table table-hover"
+                         value="#{adminCourseBean.getAllEntities()}"
+                         var="c"
+                         rowClasses="clickable-row" >
+                <f:passThroughAttribute name="data-href" value="/courses/#{c.courseCode}"/>
                 <h:column>
                     <f:facet name="header">Name</f:facet>
-                    #{c.courseCode}
+                    <a href="/courses/#{c.courseCode}">#{c.courseCode}</a>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Faculty</f:facet>
@@ -32,14 +40,26 @@
             </h:dataTable>
 
             <h2>Add a new course:</h2>
+            <ui:include src="/WEB-INF/templates/errors.xhtml"/>
             <h:form id="upload">
                 <div class="form-group">
                     <h:outputLabel value="Course Code:" for="course-code-input"/>
-                    <h:inputText id="course-code-input" styleClass="form-control" value="#{adminCourseBean.courseCode}"/>
+                    <h:inputText id="course-code-input"
+                                 styleClass="form-control"
+                                 value="#{adminCourseBean.courseCode}"
+                                 label="Course Code"
+                                 validator="#{courseCodeValidator.validate}">
+                    </h:inputText>
                 </div>
                 <div class="form-group">
                     <h:outputLabel value="Course Name:" for="course-name-input" />
-                    <h:inputText id="course-name-input" styleClass="form-control" value="#{adminCourseBean.name}" />
+                    <h:inputText id="course-name-input"
+                                 styleClass="form-control"
+                                 value="#{adminCourseBean.name}"
+                                 label="Course Name"
+                                 validatorMessage="Course name validation failed: Invalid course name.">
+                        <f:validateRegex pattern="[\w\s]{3,25}"/>
+                    </h:inputText>
                 </div>
                 <div class="form-group">
                     <h:commandButton styleClass="btn" action="#{adminCourseBean.persistEntity()}" value="Submit"/>
