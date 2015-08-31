@@ -11,6 +11,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.FacesValidator;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -109,3 +110,4 @@ public class AdminProgramBean implements AdminBean<Program>, DisplayBean<Program
         this.courseId = courseId;
     }
 }
+

@@ -52,7 +52,7 @@ public class HelloBean implements Serializable {
             return String.valueOf(pb.entityManagerExists());
     }
 
-    public void addProgram(String faculty, String shortname) {
-        pb.addProgram(faculty, shortname);
+    public void addProgram(String faculty, String shortName) {
+        pb.addProgram(faculty, shortName);
     }
 }

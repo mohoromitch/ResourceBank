@@ -18,13 +18,13 @@
             <h:dataTable styleClass="table table-hover" value="#{adminCourseBean.allEntities}" var="c" rowClasses="clickable-row">
                 <f:passThroughAttribute name="data-href" value="/courses/#{c.courseCode}"/>
                 <h:column>
-                    <f:facet name="header">Name</f:facet>
+                    <f:facet name="header">Course Code</f:facet>
                     <a href="/courses/#{c.courseCode}">
                         #{c.courseCode}
                     </a>
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Faculty</f:facet>
+                    <f:facet name="header">Name</f:facet>
                     #{c.name}
                 </h:column>
             </h:dataTable>
