@@ -17,6 +17,7 @@
                 </h1>
                 <p>Exam ##{editCMFBean.cmf.id} of #{editCMFBean.cmf.ownerCourse.courseCode}</p>
             </div>
+            <ui:include src="/WEB-INF/templates/errors.xhtml"/>
             <h:form id="exam-edit-form" styleClass="form-horizontal">
                 <div class="form-group form-group-sm">
                     <h:outputLabel for="year-select" styleClass="col-md-2 control-label" value="Year:"/>

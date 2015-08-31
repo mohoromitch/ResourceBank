@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:metadata>
+    <f:viewAction action="#{breadcrumbBean.addBreadcrumb('test', '#')}"/>
+</f:metadata>
+<ui:composition>
+    <h:outputScript library="js" name="errors.js" target="head"/>
+
+    <h:panelGroup id="errors"
+                  layout="block"
+                  rendered="#{not empty facesContext.messageList}"
+                  styleClass="panel panel-danger">
+        <div class="panel-heading">
+            <i class="glyphicon glyphicon-alert"/> Error<h:outputText value="s" rendered="#{facesContext.messageList.size() gt 1}"/>
+        </div>
+        <h:messages errorClass="list-group-item" styleClass="list-group"/>
+    </h:panelGroup>
+</ui:composition>
+</html>

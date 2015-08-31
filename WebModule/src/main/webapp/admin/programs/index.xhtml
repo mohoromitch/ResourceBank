@@ -41,18 +41,28 @@
 
             <h2>Actions:</h2>
             <h3>Add a new program:</h3>
+
+            <ui:include src="/WEB-INF/templates/errors.xhtml"/>
+
             <h:form>
                 <div class="form-group">
                     <h:outputLabel value="Program Name:" for="program-name"/>
-                        <h:inputText id="program-name" styleClass="form-control" value="#{adminProgramBean.name}"/>
+                    <h:inputText label="Program Name" id="program-name" styleClass="form-control" value="#{adminProgramBean.name}" validatorMessage="Invalid program name.">
+                        <f:validateRegex pattern="[\w\s]{3,25}"/>
+                    </h:inputText>
                 </div>
                 <div class="form-group">
                     <h:outputLabel value="Shortname:" for="program-shortname"/>
-                        <h:inputText id="program-shortname" styleClass="form-control" value="#{adminProgramBean.shortName}"/>
+                    <h:inputText id="program-shortname"
+                                 styleClass="form-control"
+                                 value="#{adminProgramBean.shortName}"
+                                 validator="#{programShortNameValidator.validate}">
+                    </h:inputText>
                 </div>
                 <div class="form-group">
                     <h:outputLabel for="faculty-select" value="Faculty:"/>
-                    <h:selectOneMenu id="faculty-select" styleClass="form-control" value="#{adminProgramBean.facultyId}">
+                    <h:selectOneMenu id="faculty-select" styleClass="form-control" value="#{adminProgramBean.facultyId}" validatorMessage="Stahp it." label="Faculty" required="true">
+                        <f:selectItem itemLabel="Select Faculty" noSelectionOption="true"/>
                         <f:selectItems value="#{adminFacultyBean.getAllEntities()}" var="faculty" itemValue="#{faculty.id}" itemLabel="#{faculty.name}"/>
                     </h:selectOneMenu>
                 </div>

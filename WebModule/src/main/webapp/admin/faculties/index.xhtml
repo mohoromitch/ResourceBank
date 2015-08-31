@@ -28,10 +28,16 @@
             </h:dataTable>
 
             <h2>Add a faculty:</h2>
+
+            <ui:include src="/WEB-INF/templates/errors.xhtml"/>
+
             <h:form>
                 <div class="form-group">
                     <h:outputLabel value="Faculty Name:" for="faculty-name-input"/>
-                        <h:inputText id="faculty-name-input" styleClass="form-control" value="#{adminFacultyBean.name}"/>
+                    <h:inputText id="faculty-name-input"
+                                 styleClass="form-control"
+                                 value="#{adminFacultyBean.name}"
+                                 validator="#{facultyNameValidator.validate}"/>
                 </div>
                 <div class="form-group">
                     <h:commandButton styleClass="btn" value="Submit" action="#{adminFacultyBean.addFaculty()}"/>
