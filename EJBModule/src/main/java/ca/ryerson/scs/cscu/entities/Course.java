@@ -8,6 +8,10 @@ import java.util.List;
 
 /**
  * Created by mitchellmohorovich on 15-07-19.
+ * Courses are one of the most important entities in the program.
+ * They store references to their Exams and CourseManagementForms.
+ * Courses have a ManyToMany relationship with Programs since
+ * courses can be relevant to many courses (even if they belong to a certain program).
  */
 
 @Entity
@@ -25,11 +29,16 @@ public class Course implements Serializable {
     @Id
     @GeneratedValue
     private int id;
-    private String courseCode; //ex. CPS109
+    /** The course code that appears in the course calendar. Ex. CPS109. It should be in the format [A-Z]+[0-9]+ */
+    private String courseCode;
+    /** The full name of the course that appears in the course calendar. Ex. Introduction to Computer Science. */
     private String name; //ex. Introduction to Computer Science I
+    /** The description of the course that appears in the course calendar. */
     private String description; //ie. What's on the Ryerson course calendar
+    /** The Exams that are owned by the course. When this Course is removed, all of its exams should be removed as well. */
     @OneToMany(cascade = CascadeType.REMOVE)
     private Collection<Exam> exams;
+    /** The CourseManagementForms that are owned by the course. When this Course is removed, all of its CMFs must be removed as well. */
     @OneToMany(cascade = CascadeType.REMOVE)
     private Collection<CourseManagementForm> courseManagementForms;
 

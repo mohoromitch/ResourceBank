@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 /**
  * Created by mitchellmohorovich on 15-07-17.
+ * A basic entity used to categorize programs.
  */
 
 @Entity

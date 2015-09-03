@@ -8,6 +8,8 @@ import java.io.Serializable;
 
 /**
  * Created by mitchellmohorovich on 15-07-19.
+ * A subclass of TimeDocument, it extends timeDocument by adding an ownerCourse reference and a Type.
+ * Type is an enum that defines what type of test it is.
  */
 
 @Entity
@@ -23,6 +25,9 @@ public class Exam extends TimeDocument implements Serializable {
     @ManyToOne
     private Course ownerCourse;
 
+    /** A transient variable used to manage whether an exam in a table row is currently editblae or not.
+     * This would make the row labels show fields instead.
+     * This variable has not been used yet. */
     @Transient
     private boolean editable; //Used for editing the entities in the table rows.
 

@@ -6,6 +6,9 @@ import javax.persistence.*;
 
 /**
  * Created by mitchellmohorovich on 15-08-22.
+ * A superclass to Exams and Courses.
+ * Made to remove the redundancies shared between the entities,
+ * and all future documents that are organized by time.
  */
 @MappedSuperclass
 public class TimeDocument {

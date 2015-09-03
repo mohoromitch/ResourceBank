@@ -7,6 +7,10 @@ import java.util.List;
 
 /**
  * Created by mitchellmohorovich on 15-07-14.
+ * An entity that represents a program.
+ * Programs have a ManyToOne relationship with faculties.
+ * Programs use their shortName to find them in URLs.
+ * ex. /programs/CS
  */
 
 @Entity

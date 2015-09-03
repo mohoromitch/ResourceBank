@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Created by mitchellmohorovich on 15-07-19.
+ * An EJB used to interact with Courses in the Database.
  */
 public interface CourseBean {
     void initializeDefaults();

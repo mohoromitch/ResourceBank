@@ -7,6 +7,10 @@ import java.io.Serializable;
 
 /**
  * Created by mitchellmohorovich on 15-08-21.
+ * A subclass of TimeDocument.
+ * This class extends TimeDocument by adding a Course reference to its parent course.
+ * This class also adds a Professor field, to display the professor's name in the field.
+ * This professor String has not been used yet, and may be replaced with an entity.
  */
 @Entity
 @NamedQueries(
