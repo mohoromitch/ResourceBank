@@ -25,6 +25,7 @@ public class CourseManagementForm extends TimeDocument implements Serializable {
     private String professor;
 
     public CourseManagementForm() {
+        super();
     }
 
     public CourseManagementForm(short year, Semester semester, String professor, Course ownerCourse) {

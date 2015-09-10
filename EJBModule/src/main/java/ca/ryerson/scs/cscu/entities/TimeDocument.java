@@ -3,6 +3,10 @@ package ca.ryerson.scs.cscu.entities;
 import ca.ryerson.scs.cscu.enums.Semester;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by mitchellmohorovich on 15-08-22.
@@ -11,7 +15,7 @@ import javax.persistence.*;
  * and all future documents that are organized by time.
  */
 @MappedSuperclass
-public class TimeDocument {
+public abstract class TimeDocument {
     @Id
     @GeneratedValue
     protected int id;
@@ -20,6 +24,12 @@ public class TimeDocument {
     protected short year;
     protected byte[] file;
     protected String contentType;
+    @Temporal(TemporalType.TIMESTAMP)
+    protected Date uploadDate;
+
+    TimeDocument() {
+        this.uploadDate = new Date();
+    }
 
     public Semester getSemester() {
         return semester;
@@ -59,5 +69,18 @@ public class TimeDocument {
 
     public void setContentType(String contentType) {
         this.contentType = contentType;
+    }
+
+    public Date getUploadDate() {
+        return uploadDate;
+    }
+
+    public void setUploadDate(Date uploadDate) {
+        this.uploadDate = uploadDate;
+    }
+
+    public String getFormattedUploadDate() {
+        String st = DateFormat.getDateInstance(DateFormat.SHORT, Locale.CANADA).format(this.getUploadDate());
+        return st;
     }
 }

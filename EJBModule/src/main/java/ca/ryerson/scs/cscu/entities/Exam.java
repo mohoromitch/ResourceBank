@@ -50,6 +50,7 @@ public class Exam extends TimeDocument implements Serializable {
 
 
     public Exam() {
+        super();
         editable = false;
     }
 
