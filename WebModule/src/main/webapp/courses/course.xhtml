@@ -12,6 +12,10 @@
 </f:metadata>
 <h:body>
     <ui:composition template="/WEB-INF/templates/template.xhtml">
+        <ui:define name="title">
+            <title>Resource Bank - #{uriCourseCode}</title>
+        </ui:define>
+
         <ui:define name="content">
             <h:outputScript library="js" name="table-link.js" target="head"/>
             <h:outputStylesheet library="css" name="table-link.min.css" target="head"/>
@@ -34,6 +38,10 @@
                         <h:column>
                             <f:facet name="header">Year</f:facet>
                             #{cmf.year}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Uploaded</f:facet>
+                            #{cmf.formattedUploadDate}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Download</f:facet>
@@ -60,31 +68,35 @@
                 <div class="col-lg-12">
                     <h:dataTable styleClass="table table-hover" value="#{courseDisplayBean.findCourseByCourseCode(uriCourseCode).exams}" var="ce" rowClasses="clickable-row">
                         <f:passThroughAttribute name="data-href" value="/downloads/exams/exam?id=#{ce.id}"/>
-                            <h:column>
-                                <f:facet name="header">Type</f:facet>
-                                #{ce.type.label}
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Semester</f:facet>
-                                #{ce.semester.label}
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Year</f:facet>
-                                #{ce.year}
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Download</f:facet>
-                                <a href="/downloads/exams/exam?id=#{ce.id}"><i class="glyphicon glyphicon-download"/> </a>
-                            </h:column>
-                            <h:column rendered="#{securityBean.userAdmin}">
-                                <f:facet name="header">Edit</f:facet>
-                                <a href="/admin/exams/modify/#{ce.id}"><i class="glyphicon glyphicon-pencil"/></a>
-                            </h:column>
+                        <h:column>
+                            <f:facet name="header">Type</f:facet>
+                            #{ce.type.label}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Semester</f:facet>
+                            #{ce.semester.label}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Year</f:facet>
+                            #{ce.year}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Uploaded</f:facet>
+                            #{ce.formattedUploadDate}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Download</f:facet>
+                            <a href="/downloads/exams/exam?id=#{ce.id}"><i class="glyphicon glyphicon-download"/> </a>
+                        </h:column>
+                        <h:column rendered="#{securityBean.userAdmin}">
+                            <f:facet name="header">Edit</f:facet>
+                            <a href="/admin/exams/modify/#{ce.id}"><i class="glyphicon glyphicon-pencil"/></a>
+                        </h:column>
                     </h:dataTable>
                 </div>
 
             </div>
-                <h:panelGroup layout="block" styleClass="row" rendered="#{securityBean.userAdmin}">
+            <h:panelGroup layout="block" styleClass="row" rendered="#{securityBean.userAdmin}">
                 <div class="col-lg-12">
                     <a href="/admin/exams/add.xhtml?courseCode=#{uriCourseCode}" class="btn btn-success btn-sm pull-left">Add New Exam</a>
                 </div>

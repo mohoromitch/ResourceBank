@@ -9,6 +9,10 @@
 </f:metadata>
 <h:body>
     <ui:composition template="/WEB-INF/templates/template.xhtml">
+        <ui:define name="title">
+            <title>Resource Bank - All Courses</title>
+        </ui:define>
+
         <ui:define name="content">
             <h:outputScript library="js" name="table-link.js" target="head"/>
             <h:outputStylesheet library="css" name="table-link.min.css" target="head"/>
