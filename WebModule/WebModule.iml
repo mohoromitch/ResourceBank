@@ -4,6 +4,7 @@
     <facet type="web" name="Web">
       <configuration>
         <descriptors>
+          <deploymentDescriptor name="glassfish-web.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/glassfish-web.xml" />
           <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/web.xml" />
         </descriptors>
         <webroots>
@@ -20,7 +21,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -29,7 +30,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="javax.faces:javax.faces-api:2.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax:javaee-web-api:7.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.faces:jsf-api:2.0" level="project" />
     <orderEntry type="library" name="Maven: org.ocpsoft.rewrite:rewrite-servlet:2.0.12.Final" level="project" />
     <orderEntry type="library" name="Maven: org.ocpsoft.rewrite:rewrite-config-prettyfaces:2.0.12.Final" level="project" />
     <orderEntry type="library" name="Maven: org.ocpsoft.rewrite:rewrite-annotations-impl:2.0.12.Final" level="project" />
@@ -41,6 +44,5 @@
     <orderEntry type="library" name="Maven: org.ocpsoft.rewrite:rewrite-annotations-api:2.0.12.Final" level="project" />
     <orderEntry type="library" name="Maven: org.ocpsoft.rewrite:rewrite-integration-faces:2.0.12.Final" level="project" />
     <orderEntry type="module" module-name="EJBModule" />
-    <orderEntry type="library" name="javax.faces:javax.faces-api:2.2" level="project" />
   </component>
 </module>

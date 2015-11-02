@@ -18,7 +18,7 @@
           <element id="library" level="project" name="Maven: org.ocpsoft.rewrite:rewrite-annotations-api:2.0.12.Final" />
           <element id="library" level="project" name="Maven: org.ocpsoft.rewrite:rewrite-integration-faces:2.0.12.Final" />
           <element id="archive" name="EJBModule-1.0-SNAPSHOT.jar">
-            <element id="artifact" artifact-name="EJBModule:ejb exploded" />
+            <element id="module-output" name="EJBModule" />
           </element>
         </element>
       </element>

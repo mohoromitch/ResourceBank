@@ -14,41 +14,41 @@ import java.io.Serializable;
  */
 @Entity
 @NamedQueries(
-        @NamedQuery(
-                name = "getAllCourseManagementForms",
-                query = "select cmf from CourseManagementForm cmf"
-        )
+	@NamedQuery(
+		name = "getAllCourseManagementForms",
+		query = "select cmf from CourseManagementForm cmf"
+	)
 )
 public class CourseManagementForm extends TimeDocument implements Serializable {
-    @ManyToOne
-    private Course ownerCourse;
-    private String professor;
+	@ManyToOne
+	private Course ownerCourse;
+	private String professor;
 
-    public CourseManagementForm() {
-        super();
-    }
+	public CourseManagementForm() {
+		super();
+	}
 
-    public CourseManagementForm(short year, Semester semester, String professor, Course ownerCourse) {
-        this();
-        this.setYear(year);
-        this.setSemester(semester);
-        this.setProfessor(professor);
-        this.ownerCourse = ownerCourse;
-    }
+	public CourseManagementForm(short year, Semester semester, String professor, Course ownerCourse) {
+		this();
+		this.setYear(year);
+		this.setSemester(semester);
+		this.setProfessor(professor);
+		this.ownerCourse = ownerCourse;
+	}
 
-    public String getProfessor() {
-        return professor;
-    }
+	public String getProfessor() {
+		return professor;
+	}
 
-    public void setProfessor(String professor) {
-        this.professor = professor;
-    }
+	public void setProfessor(String professor) {
+		this.professor = professor;
+	}
 
-    public Course getOwnerCourse() {
-        return ownerCourse;
-    }
+	public Course getOwnerCourse() {
+		return ownerCourse;
+	}
 
-    public void setOwnerCourse(Course ownerCourse) {
-        this.ownerCourse = ownerCourse;
-    }
+	public void setOwnerCourse(Course ownerCourse) {
+		this.ownerCourse = ownerCourse;
+	}
 }

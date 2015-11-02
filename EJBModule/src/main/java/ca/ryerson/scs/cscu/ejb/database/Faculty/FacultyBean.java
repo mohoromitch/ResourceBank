@@ -11,11 +11,17 @@ import java.util.List;
 
 @Remote
 public interface FacultyBean {
-    void initializeDefaults();
-    void addFaculty(Faculty faculty);
-    void addFaculty(String name);
-    void removeFaculty(int id);
-    List<Faculty> getAllFaculties();
-    Faculty findFacultyById(int id);
-    Faculty findFacultyByName(String name);
+	void initializeDefaults();
+
+	void addFaculty(Faculty faculty);
+
+	void addFaculty(String name);
+
+	void removeFaculty(int id);
+
+	List<Faculty> getAllFaculties();
+
+	Faculty findFacultyById(int id);
+
+	Faculty findFacultyByName(String name);
 }

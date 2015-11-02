@@ -17,57 +17,57 @@ import java.util.List;
 @Startup
 @Singleton
 public class CourseManagementFormBeanImp implements CourseManagementFormBean {
-    @PersistenceContext(unitName = "jdbcPU")
-    EntityManager em;
+	@PersistenceContext(unitName = "jdbcPU")
+	EntityManager em;
 
-    @Override
-    public List<CourseManagementForm> getAllCourseManagementForms() {
-        List<CourseManagementForm> cmfs;
-        Query query = em.createNamedQuery("getAllCourseManagementForms");
-        cmfs = query.getResultList();
-        return cmfs;
-    }
+	@Override
+	public List<CourseManagementForm> getAllCourseManagementForms() {
+		List<CourseManagementForm> cmfs;
+		Query query = em.createNamedQuery("getAllCourseManagementForms");
+		cmfs = query.getResultList();
+		return cmfs;
+	}
 
-    @Override
-    public CourseManagementForm getCourseManagementFormById(int id) {
-        return em.find(CourseManagementForm.class, id);
-    }
+	@Override
+	public CourseManagementForm getCourseManagementFormById(int id) {
+		return em.find(CourseManagementForm.class, id);
+	}
 
-    @Override
-    public void addCourseManagementForm(CourseManagementForm cmf) {
-        em.persist(cmf);
-    }
+	@Override
+	public void addCourseManagementForm(CourseManagementForm cmf) {
+		em.persist(cmf);
+	}
 
-    @Override
-    public void deleteCourseManagementForm(int id) {
-        CourseManagementForm cmf = em.find(CourseManagementForm.class, id);
-        cmf.getOwnerCourse().removeCourseManagementForm(cmf);
-        cmf.setOwnerCourse(null);
-        em.remove(cmf);
-    }
+	@Override
+	public void deleteCourseManagementForm(int id) {
+		CourseManagementForm cmf = em.find(CourseManagementForm.class, id);
+		cmf.getOwnerCourse().removeCourseManagementForm(cmf);
+		cmf.setOwnerCourse(null);
+		em.remove(cmf);
+	}
 
-    @Override
-    public CourseManagementForm setYear(int id, short year) {
-        CourseManagementForm cmf = em.find(CourseManagementForm.class, id);
-        cmf.setYear(year);
-        em.persist(cmf);
-        return cmf;
-    }
+	@Override
+	public CourseManagementForm setYear(int id, short year) {
+		CourseManagementForm cmf = em.find(CourseManagementForm.class, id);
+		cmf.setYear(year);
+		em.persist(cmf);
+		return cmf;
+	}
 
-    @Override
-    public CourseManagementForm setSemester(int id, Semester semester) {
-        CourseManagementForm cmf = em.find(CourseManagementForm.class, id);
-        cmf.setSemester(semester);
-        em.persist(cmf);
-        return cmf;
-    }
+	@Override
+	public CourseManagementForm setSemester(int id, Semester semester) {
+		CourseManagementForm cmf = em.find(CourseManagementForm.class, id);
+		cmf.setSemester(semester);
+		em.persist(cmf);
+		return cmf;
+	}
 
-    @Override
-    public CourseManagementForm setProfessor(int id, String professor) {
-        CourseManagementForm cmf = em.find(CourseManagementForm.class, id);
-        cmf.setProfessor(professor);
-        em.persist(cmf);
-        return cmf;
-    }
+	@Override
+	public CourseManagementForm setProfessor(int id, String professor) {
+		CourseManagementForm cmf = em.find(CourseManagementForm.class, id);
+		cmf.setProfessor(professor);
+		em.persist(cmf);
+		return cmf;
+	}
 
 }

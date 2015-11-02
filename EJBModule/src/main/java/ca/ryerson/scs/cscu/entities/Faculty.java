@@ -10,33 +10,33 @@ import java.io.Serializable;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(
-                name = "getAllFaculties",
-                query = "select f from Faculty f"
-        ),
-        @NamedQuery(
-                name = "getFacultyByName",
-                query = "select f from Faculty f where f.name = :name"
-        )
+	@NamedQuery(
+		name = "getAllFaculties",
+		query = "select f from Faculty f"
+	),
+	@NamedQuery(
+		name = "getFacultyByName",
+		query = "select f from Faculty f where f.name = :name"
+	)
 })
 public class Faculty implements Serializable {
-    @Id
-    @GeneratedValue
-    private int id;
-    private String name;
+	@Id
+	@GeneratedValue
+	private int id;
+	private String name;
 
-    public Faculty() {
-    }
+	public Faculty() {
+	}
 
-    public Faculty(String name) {
-        this.name = name;
-    }
+	public Faculty(String name) {
+		this.name = name;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 }

@@ -8,8 +8,8 @@ import javax.ejb.Stateless;
 
 @Stateless
 public class MessageBeanImpl implements MessageBean {
-    @Override
-    public String getMessage() {
-        return "Hello from EJB!";
-    }
+	@Override
+	public String getMessage() {
+		return "Hello from EJB!";
+	}
 }

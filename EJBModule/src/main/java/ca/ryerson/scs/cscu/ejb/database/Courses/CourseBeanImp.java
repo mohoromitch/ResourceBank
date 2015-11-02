@@ -20,76 +20,76 @@ import java.util.List;
 @Startup
 @Singleton
 public class CourseBeanImp implements CourseBean {
-    @PersistenceContext(unitName = "jdbcPU")
-    EntityManager em;
+	@PersistenceContext(unitName = "jdbcPU")
+	EntityManager em;
 
-    @EJB
-    ProgramBean programBean;
+	@EJB
+	ProgramBean programBean;
 
-    @Override
-    @PostConstruct
-    public void initializeDefaults() {
-        this.addCourse(new Course("CPS109", "Introduction to Computer Science I"));
-        this.addCourse(new Course("CPS209", "Introduction to Computer Science II"));
-        this.addCourse(new Course("CPS590", "Introduction to Operating Systems"));
-    }
+	@Override
+	@PostConstruct
+	public void initializeDefaults() {
+		this.addCourse(new Course("CPS109", "Introduction to Computer Science I"));
+		this.addCourse(new Course("CPS209", "Introduction to Computer Science II"));
+		this.addCourse(new Course("CPS590", "Introduction to Operating Systems"));
+	}
 
-    @Override
-    public void removeCourse(int id) {
-        Course course = this.em.find(Course.class, id);
-        em.remove(course);
-    }
+	@Override
+	public void removeCourse(int id) {
+		Course course = this.em.find(Course.class, id);
+		em.remove(course);
+	}
 
-    @Override
-    public List<Course> getAllCourses() {
-        List<Course> courses;
-        Query query = em.createNamedQuery("getAllCourses");
-        courses = query.getResultList();
-        return courses;
-    }
+	@Override
+	public List<Course> getAllCourses() {
+		List<Course> courses;
+		Query query = em.createNamedQuery("getAllCourses");
+		courses = query.getResultList();
+		return courses;
+	}
 
-    @Override
-    public Course getCourseById(int id) {
-        return em.find(Course.class, id);
-    }
+	@Override
+	public Course getCourseById(int id) {
+		return em.find(Course.class, id);
+	}
 
-    @Override
-    public Course getCourseByCourseCode(String courseCode) {
-        if(courseCode == null) return null;
-        Query query = em.createNamedQuery("getCourseByCourseCode");
-        query.setParameter("courseCode", courseCode);
-        Course returnCourse = null;
-        try {
-            returnCourse = (Course) query.getSingleResult();
-        } catch (Exception e) {
-            returnCourse = new Course("unknown", "n/a");
-        } finally {
-            return returnCourse;
-        }
-    }
+	@Override
+	public Course getCourseByCourseCode(String courseCode) {
+		if (courseCode == null) return null;
+		Query query = em.createNamedQuery("getCourseByCourseCode");
+		query.setParameter("courseCode", courseCode);
+		Course returnCourse = null;
+		try {
+			returnCourse = (Course) query.getSingleResult();
+		} catch (Exception e) {
+			returnCourse = new Course("unknown", "n/a");
+		} finally {
+			return returnCourse;
+		}
+	}
 
-    @Override
-    public void addCourse(Course c) {
-        em.persist(c);
-    }
+	@Override
+	public void addCourse(Course c) {
+		em.persist(c);
+	}
 
-    @Override
-    public boolean entityManagerExists() {
-        return (em != null);
-    }
+	@Override
+	public boolean entityManagerExists() {
+		return (em != null);
+	}
 
-    @Override
-    public void addExamToCourse(int id, Exam exam) {
-        this.getCourseById(id).addExam(exam);
-    }
+	@Override
+	public void addExamToCourse(int id, Exam exam) {
+		this.getCourseById(id).addExam(exam);
+	}
 
-    @Override
-    public void addExamToCourse(String courseCode, Exam exam) {
-        this.getCourseByCourseCode(courseCode).addExam(exam);
-    }
+	@Override
+	public void addExamToCourse(String courseCode, Exam exam) {
+		this.getCourseByCourseCode(courseCode).addExam(exam);
+	}
 
-    @Override
-    public void addCourseManagementFormToCourse(CourseManagementForm cmf, int id) {
-        this.getCourseById(id).addCourseManagementForm(cmf);
-    }
+	@Override
+	public void addCourseManagementFormToCourse(CourseManagementForm cmf, int id) {
+		this.getCourseById(id).addCourseManagementForm(cmf);
+	}
 }

@@ -16,71 +16,71 @@ import java.util.Locale;
  */
 @MappedSuperclass
 public abstract class TimeDocument {
-    @Id
-    @GeneratedValue
-    protected int id;
-    @Enumerated(EnumType.ORDINAL) //
-    protected Semester semester; //Winter, Spring, Summer, Fall :)
-    protected short year;
-    protected byte[] file;
-    protected String contentType;
-    @Temporal(TemporalType.TIMESTAMP)
-    protected Date uploadDate;
+	@Id
+	@GeneratedValue
+	protected int id;
+	@Enumerated(EnumType.ORDINAL) //
+	protected Semester semester; //Winter, Spring, Summer, Fall :)
+	protected short year;
+	protected byte[] file;
+	protected String contentType;
+	@Temporal(TemporalType.TIMESTAMP)
+	protected Date uploadDate;
 
-    TimeDocument() {
-        this.uploadDate = new Date();
-    }
+	TimeDocument() {
+		this.uploadDate = new Date();
+	}
 
-    public Semester getSemester() {
-        return semester;
-    }
+	public Semester getSemester() {
+		return semester;
+	}
 
-    public void setSemester(Semester semester) {
-        this.semester = semester;
-    }
+	public void setSemester(Semester semester) {
+		this.semester = semester;
+	}
 
-    public short getYear() {
-        return year;
-    }
+	public short getYear() {
+		return year;
+	}
 
-    public void setYear(short year) {
-        this.year = year;
-    }
+	public void setYear(short year) {
+		this.year = year;
+	}
 
-    public byte[] getFile() {
-        return file;
-    }
+	public byte[] getFile() {
+		return file;
+	}
 
-    public void setFile(byte[] file) {
-        this.file = file;
-    }
+	public void setFile(byte[] file) {
+		this.file = file;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public String getContentType() {
-        return contentType;
-    }
+	public String getContentType() {
+		return contentType;
+	}
 
-    public void setContentType(String contentType) {
-        this.contentType = contentType;
-    }
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
 
-    public Date getUploadDate() {
-        return uploadDate;
-    }
+	public Date getUploadDate() {
+		return uploadDate;
+	}
 
-    public void setUploadDate(Date uploadDate) {
-        this.uploadDate = uploadDate;
-    }
+	public void setUploadDate(Date uploadDate) {
+		this.uploadDate = uploadDate;
+	}
 
-    public String getFormattedUploadDate() {
-        String st = DateFormat.getDateInstance(DateFormat.SHORT, Locale.CANADA).format(this.getUploadDate());
-        return st;
-    }
+	public String getFormattedUploadDate() {
+		String st = DateFormat.getDateInstance(DateFormat.SHORT, Locale.CANADA).format(this.getUploadDate());
+		return st;
+	}
 }

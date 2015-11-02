@@ -12,15 +12,25 @@ import java.util.List;
 
 @Local
 public interface ProgramBean {
-    void initializeDefaults();
-    void removeProgram(int id);
-    List<Program> getAllPrograms();
-    List<Program> getProgramsByFaculty(Faculty f);
-    Program getProgramByShortName(String shortName);
-    Program getProgramById(int id);
-    void addProgram(Program program);
-    void addProgram(String name, String shortName);
-    void addProgram(String name, String shortName, Faculty faculty);
-    void addCourseToProgramByShortName(int courseId, String shortName);
-    boolean entityManagerExists();
+	void initializeDefaults();
+
+	void removeProgram(int id);
+
+	List<Program> getAllPrograms();
+
+	List<Program> getProgramsByFaculty(Faculty f);
+
+	Program getProgramByShortName(String shortName);
+
+	Program getProgramById(int id);
+
+	void addProgram(Program program);
+
+	void addProgram(String name, String shortName);
+
+	void addProgram(String name, String shortName, Faculty faculty);
+
+	void addCourseToProgramByShortName(int courseId, String shortName);
+
+	boolean entityManagerExists();
 }

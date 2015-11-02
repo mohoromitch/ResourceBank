@@ -12,14 +12,23 @@ import java.util.List;
  * An EJB used to interact with Courses in the Database.
  */
 public interface CourseBean {
-    void initializeDefaults();
-    void removeCourse(int id);
-    List<Course> getAllCourses();
-    Course getCourseById(int id);
-    Course getCourseByCourseCode(String courseCode);
-    void addCourse(Course c);
-    boolean entityManagerExists();
-    void addExamToCourse(int id, Exam exam);
-    void addExamToCourse(String courseCode, Exam exam);
-    void addCourseManagementFormToCourse(CourseManagementForm cmf, int id);
+	void initializeDefaults();
+
+	void removeCourse(int id);
+
+	List<Course> getAllCourses();
+
+	Course getCourseById(int id);
+
+	Course getCourseByCourseCode(String courseCode);
+
+	void addCourse(Course c);
+
+	boolean entityManagerExists();
+
+	void addExamToCourse(int id, Exam exam);
+
+	void addExamToCourse(String courseCode, Exam exam);
+
+	void addCourseManagementFormToCourse(CourseManagementForm cmf, int id);
 }

@@ -8,5 +8,5 @@ import javax.ejb.Remote;
 
 @Remote
 public interface MessageBean {
-    String getMessage();
+	String getMessage();
 }

@@ -5,18 +5,18 @@ package ca.ryerson.scs.cscu.enums;
  * An enum that represents the semesters of the school.
  */
 public enum Semester {
-        fall("Fall"),
-        winter("Winter"),
-        spring("Spring"),
-        summer("Summer"),;
+	fall("Fall"),
+	winter("Winter"),
+	spring("Spring"),
+	summer("Summer"),;
 
-        private final String label;
+	private final String label;
 
-        Semester(String label) {
-            this.label = label;
-        }
+	Semester(String label) {
+		this.label = label;
+	}
 
-        public String getLabel() {
-            return label;
-        }
+	public String getLabel() {
+		return label;
+	}
 }
