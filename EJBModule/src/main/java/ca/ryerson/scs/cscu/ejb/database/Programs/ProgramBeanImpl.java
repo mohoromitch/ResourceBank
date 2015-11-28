@@ -122,10 +122,4 @@ public class ProgramBeanImpl implements ProgramBean {
 		em.persist(program);
 	}
 
-	@Override
-	public boolean entityManagerExists() {
-		return (em != null);
-	}
-
-
 }
