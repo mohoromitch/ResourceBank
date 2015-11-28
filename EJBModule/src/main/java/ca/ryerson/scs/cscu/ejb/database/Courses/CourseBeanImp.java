@@ -74,11 +74,6 @@ public class CourseBeanImp implements CourseBean {
 	}
 
 	@Override
-	public boolean entityManagerExists() {
-		return (em != null);
-	}
-
-	@Override
 	public void addExamToCourse(int id, Exam exam) {
 		this.getCourseById(id).addExam(exam);
 	}

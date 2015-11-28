@@ -88,7 +88,7 @@ public class ProgramBeanImpl implements ProgramBean {
 		Program returnProgram = null;
 		try {
 			returnProgram = (Program) query.getSingleResult();
-		} catch (Exception e) {
+		} catch (Exception ignored) {
 		}
 		return returnProgram;
 	}
@@ -102,8 +102,7 @@ public class ProgramBeanImpl implements ProgramBean {
 	public void addProgram(Program program) {
 		try {
 			this.em.persist(program);
-		} catch (EJBException e) {
-			e.printStackTrace();
+		} catch (EJBException ignored) {
 		}
 	}
 

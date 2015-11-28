@@ -24,8 +24,6 @@ public interface CourseBean {
 
 	void addCourse(Course c);
 
-	boolean entityManagerExists();
-
 	void addExamToCourse(int id, Exam exam);
 
 	void addExamToCourse(String courseCode, Exam exam);

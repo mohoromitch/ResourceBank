@@ -13,8 +13,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.io.Serializable;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -47,7 +45,7 @@ public class AdminCourseBean implements AdminBean<Course>, DisplayBean<Course> {
         this.name = name;
     }
 
-    public Course findCourseByCourseCode(String courseCode) {
+    public Course getCourseByCourseCode(String courseCode) {
         return courseBean.getCourseByCourseCode(courseCode);
     }
 
@@ -80,7 +78,7 @@ public class AdminCourseBean implements AdminBean<Course>, DisplayBean<Course> {
     }
 
     public void addExamToCourseByCourseCode(String courseCode, Exam exam) {
-        this.findCourseByCourseCode(courseCode).addExam(exam);
+        this.getCourseByCourseCode(courseCode).addExam(exam);
     }
 
     public void addExamToCourseById(int id, Exam exam) {
