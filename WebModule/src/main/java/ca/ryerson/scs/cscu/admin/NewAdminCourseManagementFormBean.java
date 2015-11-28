@@ -57,16 +57,6 @@ public class NewAdminCourseManagementFormBean extends TimeDocumentHandler {
     public int getCurrentYear() { return Calendar.getInstance().get(Calendar.YEAR);
     }
 
-    public int[] getYearRange() {
-        int size = this.getCurrentYear() - this.MINIMUM_YEAR + 1;
-        int returnArray[] = new int[size];
-        returnArray[0] = this.MINIMUM_YEAR;
-        for (int i = 1; i < size; i++) {
-            returnArray[i] = returnArray[i-1]+1;
-        }
-        return returnArray;
-    }
-
     public String getProfessor() {
         return professor;
     }
