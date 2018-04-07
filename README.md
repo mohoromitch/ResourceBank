@@ -1,6 +1,6 @@
-#CS Resource Bank#
+# CS Resource Bank
 
-##About##
+## About
 
 The CS Resource Bank will be the future replacement for the current [CSCU Exam Bank](http://exams.cscu.scs.ryerson.ca). It will do everything the CSCU Exam Bank does, including:
 
@@ -11,11 +11,11 @@ The CS Resource Bank will be the future replacement for the current [CSCU Exam B
 - Users will be able to upload documents
 - Textbooks ratings and listings for programs
 
-###Why the rewrite?###
+### Why the rewrite?
 
 The current exam bank uses a NoSQL DB, and is written with Ruby on Rails. We wanted to add account support to the future version, so using a NoSQL db would be a big no no. All students know Java, and not many know Ruby, so in my opinion, going with Java is the way to go. The portions of it used in this project are easy to learn, and users won't have to learn any other programming languages.
 
-###Dependencies:###
+### Dependencies:
 
 - Java 8 JDK
 - Java EE 7
@@ -23,7 +23,7 @@ The current exam bank uses a NoSQL DB, and is written with Ruby on Rails. We wan
 - Bootstrap (included)
 - JQuery (included)
 
-####Notes:####
+#### Notes:
 
-####PrettyFaces####
+#### PrettyFaces
 You will most likely need to add PrettyFaces to the project yourself, which is pretty easy. In Project Settings, add rewrite-servlet and rewrite-config-prettyfaces versions 2.0.12 through Maven.
